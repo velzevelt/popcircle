@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/bubble/circle.gd" type="Script" id=1]
+[ext_resource path="res://scenes/bubble/create_at_random_position.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=2]
+resource_local_to_scene = true
+radius = 100.0
+
+[node name="Bubble" type="Node2D"]
+position = Vector2( 300, 0 )
+script = ExtResource( 1 )
+init_radius = 50
+init_outline_thickness = 5
+fade_in_duration = 1.0
+fade_out_duration = 0.3
+
+[node name="Area2D" type="Area2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CreateAtRandomPosition" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="LifeTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_Area2D_mouse_exited"]
+[connection signal="timeout" from="LifeTimer" to="." method="_on_LifeTimer_timeout"]
