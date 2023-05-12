@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/game/spawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/label_font.tres" type="DynamicFont" id=2]
@@ -7,6 +7,12 @@
 [ext_resource path="res://scenes/game/missed_label.gd" type="Script" id=5]
 [ext_resource path="res://scenes/game/game.gd" type="Script" id=6]
 [ext_resource path="res://scenes/game/spawn_rate_label.gd" type="Script" id=7]
+[ext_resource path="res://scenes/game/accurancy_label.gd" type="Script" id=8]
+[ext_resource path="res://scenes/game/calculate_accurancy.gd" type="Script" id=9]
+[ext_resource path="res://scenes/game/game_over.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/game/game_over_canvas.gd" type="Script" id=11]
+[ext_resource path="res://icon.png" type="Texture" id=12]
+[ext_resource path="res://scenes/game/back_button_texture.gd" type="Script" id=13]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
@@ -23,7 +29,7 @@ anchor_bottom = 1.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color( 0.282353, 0.282353, 0.282353, 1 )
+color = Color( 0.509804, 0.509804, 0.509804, 1 )
 
 [node name="Spawner" parent="." instance=ExtResource( 1 )]
 
@@ -35,38 +41,73 @@ margin_bottom = 40.0
 mouse_filter = 2
 
 [node name="ScoreLabel" type="Label" parent="CanvasLayer2/VBoxContainer"]
-margin_right = 346.0
-margin_bottom = 78.0
+margin_right = 241.0
+margin_bottom = 55.0
 custom_fonts/font = ExtResource( 2 )
 text = "Score: "
 script = ExtResource( 3 )
 
 [node name="BubblesLabel" type="Label" parent="CanvasLayer2/VBoxContainer"]
-margin_top = 82.0
-margin_right = 346.0
-margin_bottom = 160.0
+margin_top = 59.0
+margin_right = 241.0
+margin_bottom = 114.0
 custom_fonts/font = ExtResource( 2 )
 text = "Bubbles:"
 script = ExtResource( 4 )
 
 [node name="MissedLabel" type="Label" parent="CanvasLayer2/VBoxContainer"]
-margin_top = 164.0
-margin_right = 346.0
-margin_bottom = 242.0
+margin_top = 118.0
+margin_right = 241.0
+margin_bottom = 173.0
 custom_fonts/font = ExtResource( 2 )
 text = "Missed:"
 script = ExtResource( 5 )
 
 [node name="SpawnRateLabel" type="Label" parent="CanvasLayer2/VBoxContainer"]
-margin_top = 246.0
-margin_right = 346.0
-margin_bottom = 324.0
+margin_top = 177.0
+margin_right = 241.0
+margin_bottom = 232.0
 custom_fonts/font = ExtResource( 2 )
 text = "Spawn Rate:"
 script = ExtResource( 7 )
+
+[node name="AccurancyLabel" type="Label" parent="CanvasLayer2/VBoxContainer"]
+margin_top = 236.0
+margin_right = 241.0
+margin_bottom = 291.0
+custom_fonts/font = ExtResource( 2 )
+text = "Accurancy:"
+script = ExtResource( 8 )
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer2"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -72.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = 72.0
+texture_normal = ExtResource( 12 )
+script = ExtResource( 13 )
+
+[node name="CalculateAccurancy" type="Node" parent="."]
+script = ExtResource( 9 )
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+pause_mode = 2
+offset = Vector2( 2000, 0 )
+transform = Transform2D( 1, 0, 0, 1, 2000, 0 )
+script = ExtResource( 11 )
+anim_duration = 0.8
+
+[node name="GameOver" parent="CanvasLayer3" instance=ExtResource( 10 )]
 
 [connection signal="object_deleted" from="Spawner" to="CanvasLayer2/VBoxContainer/BubblesLabel" method="_on_Spawner_object_deleted"]
 [connection signal="object_spawned" from="Spawner" to="CanvasLayer2/VBoxContainer/BubblesLabel" method="_on_Spawner_object_spawned"]
 [connection signal="spawn_rate_changed" from="Spawner" to="CanvasLayer2/VBoxContainer/SpawnRateLabel" method="_on_Spawner_spawn_rate_changed"]
 [connection signal="task_completed" from="Spawner" to="CanvasLayer2/VBoxContainer/ScoreLabel" method="_on_Spawner_task_completed"]
+[connection signal="task_completed" from="Spawner" to="CalculateAccurancy" method="_on_Spawner_task_completed"]
 [connection signal="task_failed" from="Spawner" to="CanvasLayer2/VBoxContainer/MissedLabel" method="_on_Spawner_task_failed"]
+[connection signal="task_failed" from="Spawner" to="CalculateAccurancy" method="_on_Spawner_task_failed"]
+[connection signal="accurancy_too_small" from="CalculateAccurancy" to="CanvasLayer3/GameOver" method="_on_CalculateAccurancy_accurancy_too_small"]
+[connection signal="accurancy_too_small" from="CalculateAccurancy" to="CanvasLayer3" method="_on_CalculateAccurancy_accurancy_too_small"]
+[connection signal="accurancy_updated" from="CalculateAccurancy" to="CanvasLayer2/VBoxContainer/AccurancyLabel" method="_on_CalculateAccurancy_accurancy_updated"]

@@ -10,6 +10,8 @@ radius = 100.0
 [node name="Bubble" type="Node2D"]
 position = Vector2( 300, 0 )
 script = ExtResource( 1 )
+albedo = Color( 0.745098, 0.129412, 0.215686, 1 )
+outline_color = Color( 0.521569, 0.0901961, 0.152941, 1 )
 init_radius = 50
 init_outline_thickness = 5
 fade_in_duration = 1.0

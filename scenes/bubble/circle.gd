@@ -41,7 +41,11 @@ func _input(event):
 		if event.pressed and _mouse_entered and not _handled:
 			_handled = true
 			_fade_out()
-			
+			return
+	elif Input.is_action_pressed("click") and _mouse_entered and not _handled:
+		_handled = true
+		_fade_out()
+
 
 
 func _process(_delta):
