@@ -7,3 +7,7 @@ func _ready():
 func _on_pressed():
 	get_tree().change_scene("res://scenes/menu/menu.tscn")
 	get_tree().paused = false
+
+
+func _on_CalculateAccurancy_accurancy_too_small():
+	pass

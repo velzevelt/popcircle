@@ -8,6 +8,7 @@ signal tasks_failed
 onready var collision_shape = $Area2D/CollisionShape2D as CollisionShape2D
 onready var area2d = $Area2D as Area2D
 onready var life_timer = $LifeTimer as Timer
+onready var click_sfx = $ClickSfx as AudioStreamPlayer2D
 
 
 export var draw_outline = true
@@ -39,13 +40,15 @@ func _input(event):
 	
 	if event is InputEventScreenTouch:
 		if event.pressed and _mouse_entered and not _handled:
-			_handled = true
-			_fade_out()
-			return
+			_handle_click()
 	elif Input.is_action_pressed("click") and _mouse_entered and not _handled:
-		_handled = true
-		_fade_out()
+		_handle_click()
 
+
+func _handle_click():
+	click_sfx.play()
+	_handled = true
+	_fade_out()
 
 
 func _process(_delta):
@@ -104,6 +107,14 @@ func _on_tasks_completed():
 		emit_signal('tasks_failed')
 	
 	#print("Deleting bubble")
+	if not click_sfx.playing:
+		_safe_destroy()
+	else:
+		if not click_sfx.is_connected("finished", self, '_safe_destroy'):
+			click_sfx.connect("finished", self, '_safe_destroy')
+
+
+func _safe_destroy():
 	call_deferred('free')
 
 
