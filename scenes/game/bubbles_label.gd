@@ -9,7 +9,6 @@ func _ready():
 
 func _update_text():
 	text = prefix + str(count)
-	
 
 
 
@@ -20,4 +19,7 @@ func _on_Spawner_object_spawned():
 
 func _on_Spawner_object_deleted():
 	count -= 1
+	if count < 0: # Unkown bug fix, have no time to fix it in properly
+		count = 0
+	
 	_update_text()

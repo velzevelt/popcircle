@@ -1,19 +1,19 @@
 tool
 extends Node2D
 
-signal appeared
 signal tasks_completed
 signal tasks_failed
 
 onready var collision_shape = $Area2D/CollisionShape2D as CollisionShape2D
 onready var area2d = $Area2D as Area2D
 onready var life_timer = $LifeTimer as Timer
-onready var click_sfx = $ClickSfx as AudioStreamPlayer2D
+onready var click_sfx = $ClickSfx as AudioStreamPlayer
 
 
 export var draw_outline = true
 export var albedo: Color = Color.yellow
 export var outline_color: Color = Color.black
+export var fade_out_color: Color = Color.yellowgreen
 export var init_radius = 100
 export var init_outline_thickness = 10
 
@@ -66,12 +66,17 @@ func _ready():
 		outline_thickness = 0
 		_fade_in()
 	
-	connect("appeared", self, 'start_life_timer')
 
 
 func start_life_timer():
+	_wait_to_out(life_timer.wait_time)
 	life_timer.start()
 	
+
+func _wait_to_out(wait_time):
+	var tween = create_tween()
+	tween.tween_property(self, 'albedo', fade_out_color, wait_time)
+
 
 func _fade_out(duration=fade_out_duration, transparency = true):
 	var tween = create_tween()
@@ -106,12 +111,13 @@ func _on_tasks_completed():
 	else:
 		emit_signal('tasks_failed')
 	
-	#print("Deleting bubble")
-	if not click_sfx.playing:
-		_safe_destroy()
-	else:
-		if not click_sfx.is_connected("finished", self, '_safe_destroy'):
-			click_sfx.connect("finished", self, '_safe_destroy')
+	_safe_destroy()
+	
+#	if not click_sfx.playing:
+#		_safe_destroy()
+#	else:
+#		yield(click_sfx, "finished")
+#		_safe_destroy()
 
 
 func _safe_destroy():
@@ -120,12 +126,10 @@ func _safe_destroy():
 
 func _on_Area2D_mouse_entered():
 	_mouse_entered = true
-	#print('Bubble mouse entered')
 
 
 func _on_Area2D_mouse_exited():
 	_mouse_entered = false
-	#print('Bubble mouse exited')
 
 
 func _on_LifeTimer_timeout():

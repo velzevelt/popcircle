@@ -1,13 +1,13 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://scenes/menu/buttons_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/main_menu/button_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/game/replay_button.gd" type="Script" id=2]
-[ext_resource path="res://scenes/menu/button_normal.tres" type="StyleBox" id=3]
-[ext_resource path="res://scenes/menu/button_hover.tres" type="StyleBox" id=4]
+[ext_resource path="res://scenes/main_menu/button_normal.tres" type="StyleBox" id=3]
+[ext_resource path="res://scenes/main_menu/button_hover.tres" type="StyleBox" id=4]
 [ext_resource path="res://scenes/game/game_over.gd" type="Script" id=5]
 [ext_resource path="res://scenes/game/back_button.gd" type="Script" id=6]
-[ext_resource path="res://scenes/menu/button_pressed.tres" type="StyleBox" id=7]
-[ext_resource path="res://scenes/menu/game_over.tres" type="StyleBox" id=8]
+[ext_resource path="res://scenes/main_menu/button_pressed.tres" type="StyleBox" id=7]
+[ext_resource path="res://scenes/main_menu/game_over.tres" type="StyleBox" id=8]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.137255, 0.137255, 0.137255, 0.215686 )

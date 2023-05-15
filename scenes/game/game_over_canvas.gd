@@ -8,3 +8,7 @@ func fade_in():
 
 func _on_CalculateAccurancy_accurancy_too_small():
 	fade_in()
+
+
+func _on_World_finished():
+	fade_in()

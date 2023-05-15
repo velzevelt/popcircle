@@ -7,3 +7,5 @@ func _ready():
 func _on_CalculateAccurancy_accurancy_too_small():
 	get_tree().paused = true
 	visible = true
+
+

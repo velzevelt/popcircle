@@ -13,9 +13,27 @@ _global_script_classes=[ {
 "class": "CalculateAccurancy",
 "language": "GDScript",
 "path": "res://scenes/game/calculate_accurancy.gd"
+}, {
+"base": "Resource",
+"class": "SongData",
+"language": "GDScript",
+"path": "res://scenes/song_data.gd"
+}, {
+"base": "Node2D",
+"class": "Spawner",
+"language": "GDScript",
+"path": "res://scenes/spawner/spawner.gd"
+}, {
+"base": "Node2D",
+"class": "Spectrum",
+"language": "GDScript",
+"path": "res://scenes/spectrum/spectrum.gd"
 } ]
 _global_script_class_icons={
-"CalculateAccurancy": ""
+"CalculateAccurancy": "",
+"SongData": "",
+"Spawner": "",
+"Spectrum": ""
 }
 
 [application]
@@ -27,6 +45,10 @@ config/icon="res://icon.png"
 [autoload]
 
 UsefulScript="*res://scenes/autoload/useful_script.gd"
+
+[debug]
+
+gdscript/warnings/return_value_discarded=false
 
 [display]
 
@@ -43,6 +65,13 @@ enabled=PoolStringArray(  )
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[importer_defaults]
+
+mp3={
+"loop": false,
+"loop_offset": 0
+}
 
 [input]
 

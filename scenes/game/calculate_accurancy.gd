@@ -4,22 +4,26 @@ extends Node
 signal accurancy_too_small
 signal accurancy_updated(new_accurancy)
 
-## Min accurancy player shoud be to not lose
+## Min accurancy player must keep
 export var min_accurancy = 51
 
 var accurancy: float = 100.0
+
+
 var failed = 0
-var completed = 0
 
 func update_accurancy():
-	accurancy = calculate_accurancy(failed, completed)
+	accurancy = calculate_accurancy()
 	if accurancy < min_accurancy:
 		emit_signal("accurancy_too_small")
 	
 	emit_signal("accurancy_updated", accurancy)
 
+func calculate_accurancy() -> float:
+	return calculate_true_accurancy(failed, 4*2) # 4 attempts before loose
 
-func calculate_accurancy(missed: int, score: int) -> float:
+
+func calculate_true_accurancy(missed: int, score: int) -> float:
 	if missed == 0:
 		return 100.0
 	
@@ -35,7 +39,10 @@ func calculate_accurancy(missed: int, score: int) -> float:
 
 
 func _on_Spawner_task_completed():
-	completed += 1
+	failed -= 1
+	if failed < 0:
+		failed = 0
+	
 	update_accurancy()
 
 

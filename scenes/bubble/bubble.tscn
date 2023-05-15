@@ -8,10 +8,12 @@
 resource_local_to_scene = true
 radius = 100.0
 
-[node name="Bubble" type="Node2D"]
+[node name="Bubble" type="Node2D" groups=["bubble"]]
 position = Vector2( 300, 0 )
 script = ExtResource( 1 )
-albedo = Color( 0.745098, 0.129412, 0.215686, 1 )
+draw_outline = false
+albedo = Color( 0.866667, 0.411765, 0.411765, 1 )
+outline_color = Color( 0.784314, 0.784314, 0.784314, 1 )
 init_radius = 50
 init_outline_thickness = 5
 fade_in_duration = 1.0
@@ -35,7 +37,7 @@ script = ExtResource( 2 )
 wait_time = 3.0
 one_shot = true
 
-[node name="ClickSfx" type="AudioStreamPlayer2D" parent="."]
+[node name="ClickSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 bus = "Sounds"
 

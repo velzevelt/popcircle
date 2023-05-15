@@ -5,5 +5,5 @@ func _ready():
 
 
 func _on_pressed():
-	get_tree().change_scene("res://scenes/menu/menu.tscn")
+	get_tree().change_scene("res://scenes/menu/main_menu.tscn")
 	get_tree().paused = false

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/spawner/spawner.gd" type="Script" id=1]
+[ext_resource path="res://scenes/bubble/bubble.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/spawner/use_energy_difficulty.gd" type="Script" id=3]
+[ext_resource path="res://scenes/spectrum/spectrum.gd" type="Script" id=4]
+
+[node name="Spawner" type="Node2D" groups=["spawner"]]
+script = ExtResource( 1 )
+bubble_scene = ExtResource( 2 )
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="UseEnergyDifficulty" type="Node" parent="."]
+script = ExtResource( 3 )
+spectrum = NodePath("../Spectrum")
+
+[node name="Spectrum" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

@@ -1,6 +1,6 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://scenes/game/spawner.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/spawner/spawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/label_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://scenes/game/score_label.gd" type="Script" id=3]
 [ext_resource path="res://scenes/game/bubbles_label.gd" type="Script" id=4]
@@ -14,12 +14,30 @@
 [ext_resource path="res://sprites/close_button.svg" type="Texture" id=12]
 [ext_resource path="res://scenes/game/back_button_texture.gd" type="Script" id=13]
 [ext_resource path="res://scenes/game/accurancy_bar.gd" type="Script" id=14]
+[ext_resource path="res://scenes/game/music_player.gd" type="Script" id=15]
+[ext_resource path="res://songs/Bring Me The Horizon - Kingslayer (feat. BABYMETAL).mp3" type="AudioStream" id=16]
+[ext_resource path="res://scenes/game/game_song_data.tres" type="Resource" id=17]
+[ext_resource path="res://scenes/main_menu/main_menu.tscn" type="PackedScene" id=18]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.192157, 0.192157, 0.192157, 0.4 )
 
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.333333, 0.709804, 0.407843, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.866667, 0.411765, 0.411765, 1 )
+
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
+main_menu = ExtResource( 18 )
+finish_wait_time = 0.5
+song_data = ExtResource( 17 )
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+bus = "Music"
+script = ExtResource( 15 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
@@ -29,32 +47,35 @@ visible = false
 [node name="CalculateAccurancy" type="Node" parent="."]
 script = ExtResource( 9 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="BGL" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="BackGround" type="ColorRect" parent="CanvasLayer"]
+[node name="BackGround" type="ColorRect" parent="BGL"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color( 0.509804, 0.509804, 0.509804, 1 )
+color = Color( 0.109804, 0.109804, 0.109804, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="InfoL" type="CanvasLayer" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoL"]
 margin_right = 40.0
 margin_bottom = 40.0
 mouse_filter = 2
 
-[node name="ScoreLabel" type="Label" parent="CanvasLayer2/VBoxContainer"]
+[node name="ScoreLabel" type="Label" parent="InfoL/VBoxContainer"]
 margin_right = 241.0
 margin_bottom = 55.0
 custom_fonts/font = ExtResource( 2 )
 text = "Score: "
 script = ExtResource( 3 )
 
-[node name="BubblesLabel" type="Label" parent="CanvasLayer2/VBoxContainer"]
+[node name="BubblesLabel" type="Label" parent="InfoL/VBoxContainer"]
 margin_top = 59.0
 margin_right = 241.0
 margin_bottom = 114.0
@@ -62,7 +83,7 @@ custom_fonts/font = ExtResource( 2 )
 text = "Bubbles:"
 script = ExtResource( 4 )
 
-[node name="MissedLabel" type="Label" parent="CanvasLayer2/VBoxContainer"]
+[node name="MissedLabel" type="Label" parent="InfoL/VBoxContainer"]
 margin_top = 118.0
 margin_right = 241.0
 margin_bottom = 173.0
@@ -70,7 +91,7 @@ custom_fonts/font = ExtResource( 2 )
 text = "Missed:"
 script = ExtResource( 5 )
 
-[node name="SpawnRateLabel" type="Label" parent="CanvasLayer2/VBoxContainer"]
+[node name="SpawnRateLabel" type="Label" parent="InfoL/VBoxContainer"]
 margin_top = 177.0
 margin_right = 241.0
 margin_bottom = 232.0
@@ -78,7 +99,8 @@ custom_fonts/font = ExtResource( 2 )
 text = "Spawn Rate:"
 script = ExtResource( 7 )
 
-[node name="AccurancyLabel" type="Label" parent="CanvasLayer2/VBoxContainer"]
+[node name="AccurancyLabel" type="Label" parent="InfoL/VBoxContainer"]
+visible = false
 margin_top = 236.0
 margin_right = 241.0
 margin_bottom = 291.0
@@ -86,7 +108,7 @@ custom_fonts/font = ExtResource( 2 )
 text = "Accurancy:"
 script = ExtResource( 8 )
 
-[node name="AccurancyPanel" type="Panel" parent="CanvasLayer2"]
+[node name="AccurancyPanel" type="Panel" parent="InfoL"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -94,7 +116,7 @@ margin_top = -59.0
 mouse_filter = 2
 custom_styles/panel = SubResource( 1 )
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/AccurancyPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="InfoL/AccurancyPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -103,7 +125,7 @@ custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
 
-[node name="AccurancyBar" type="ProgressBar" parent="CanvasLayer2/AccurancyPanel/MarginContainer"]
+[node name="AccurancyBar" type="ProgressBar" parent="InfoL/AccurancyPanel/MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1900.0
@@ -111,25 +133,39 @@ margin_bottom = 39.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
 min_value = 50.0
 value = 100.0
 allow_lesser = true
 percent_visible = false
 script = ExtResource( 14 )
 
-[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+[node name="GameOverL" type="CanvasLayer" parent="."]
 pause_mode = 2
 offset = Vector2( 2000, 0 )
 transform = Transform2D( 1, 0, 0, 1, 2000, 0 )
 script = ExtResource( 11 )
 anim_duration = 0.8
 
-[node name="GameOver" parent="CanvasLayer3" instance=ExtResource( 10 )]
+[node name="GameOver" parent="GameOverL" instance=ExtResource( 10 )]
 
-[node name="CanvasLayer4" type="CanvasLayer" parent="."]
+[node name="FinishL" type="CanvasLayer" parent="."]
+pause_mode = 2
+offset = Vector2( -2000, 0 )
+transform = Transform2D( 1, 0, 0, 1, -2000, 0 )
+script = ExtResource( 11 )
+anim_duration = 0.8
+
+[node name="Finish" parent="FinishL" instance=ExtResource( 10 )]
+
+[node name="Label" parent="FinishL/Finish/Panel" index="0"]
+text = "FINISH"
+
+[node name="ExitL" type="CanvasLayer" parent="."]
 layer = 3
 
-[node name="ExitButton" type="TextureButton" parent="CanvasLayer4"]
+[node name="ExitButton" type="TextureButton" parent="ExitL"]
 pause_mode = 2
 anchor_left = 1.0
 anchor_right = 1.0
@@ -140,16 +176,22 @@ margin_bottom = 106.0
 texture_normal = ExtResource( 12 )
 expand = true
 script = ExtResource( 13 )
+main_menu = ExtResource( 18 )
 
-[connection signal="object_deleted" from="Spawner" to="CanvasLayer2/VBoxContainer/BubblesLabel" method="_on_Spawner_object_deleted"]
-[connection signal="object_spawned" from="Spawner" to="CanvasLayer2/VBoxContainer/BubblesLabel" method="_on_Spawner_object_spawned"]
-[connection signal="spawn_rate_changed" from="Spawner" to="CanvasLayer2/VBoxContainer/SpawnRateLabel" method="_on_Spawner_spawn_rate_changed"]
-[connection signal="task_completed" from="Spawner" to="CanvasLayer2/VBoxContainer/ScoreLabel" method="_on_Spawner_task_completed"]
+[connection signal="finished" from="." to="FinishL" method="_on_World_finished"]
+[connection signal="finished" from="." to="FinishL/Finish" method="_on_CalculateAccurancy_accurancy_too_small"]
+[connection signal="finished" from="MusicPlayer" to="." method="_on_MusicPlayer_finished"]
+[connection signal="object_deleted" from="Spawner" to="InfoL/VBoxContainer/BubblesLabel" method="_on_Spawner_object_deleted"]
+[connection signal="object_spawned" from="Spawner" to="InfoL/VBoxContainer/BubblesLabel" method="_on_Spawner_object_spawned"]
+[connection signal="spawn_rate_changed" from="Spawner" to="InfoL/VBoxContainer/SpawnRateLabel" method="_on_Spawner_spawn_rate_changed"]
 [connection signal="task_completed" from="Spawner" to="CalculateAccurancy" method="_on_Spawner_task_completed"]
-[connection signal="task_failed" from="Spawner" to="CanvasLayer2/VBoxContainer/MissedLabel" method="_on_Spawner_task_failed"]
+[connection signal="task_completed" from="Spawner" to="InfoL/VBoxContainer/ScoreLabel" method="_on_Spawner_task_completed"]
 [connection signal="task_failed" from="Spawner" to="CalculateAccurancy" method="_on_Spawner_task_failed"]
-[connection signal="accurancy_too_small" from="CalculateAccurancy" to="CanvasLayer4/ExitButton" method="_on_CalculateAccurancy_accurancy_too_small"]
-[connection signal="accurancy_too_small" from="CalculateAccurancy" to="CanvasLayer3" method="_on_CalculateAccurancy_accurancy_too_small"]
-[connection signal="accurancy_too_small" from="CalculateAccurancy" to="CanvasLayer3/GameOver" method="_on_CalculateAccurancy_accurancy_too_small"]
-[connection signal="accurancy_updated" from="CalculateAccurancy" to="CanvasLayer2/VBoxContainer/AccurancyLabel" method="_on_CalculateAccurancy_accurancy_updated"]
-[connection signal="accurancy_updated" from="CalculateAccurancy" to="CanvasLayer2/AccurancyPanel/MarginContainer/AccurancyBar" method="_on_CalculateAccurancy_accurancy_updated"]
+[connection signal="task_failed" from="Spawner" to="InfoL/VBoxContainer/MissedLabel" method="_on_Spawner_task_failed"]
+[connection signal="accurancy_too_small" from="CalculateAccurancy" to="GameOverL" method="_on_CalculateAccurancy_accurancy_too_small"]
+[connection signal="accurancy_too_small" from="CalculateAccurancy" to="GameOverL/GameOver" method="_on_CalculateAccurancy_accurancy_too_small"]
+[connection signal="accurancy_too_small" from="CalculateAccurancy" to="ExitL/ExitButton" method="_on_CalculateAccurancy_accurancy_too_small"]
+[connection signal="accurancy_updated" from="CalculateAccurancy" to="InfoL/VBoxContainer/AccurancyLabel" method="_on_CalculateAccurancy_accurancy_updated"]
+[connection signal="accurancy_updated" from="CalculateAccurancy" to="InfoL/AccurancyPanel/MarginContainer/AccurancyBar" method="_on_CalculateAccurancy_accurancy_updated"]
+
+[editable path="FinishL/Finish"]

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://scenes/song_data.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+author = "Bring Me The Horizon"
+song_name = "Kingslayer"
+tags = PoolStringArray(  )
+_difficulty_preset = ""
+_player_statistics = ""

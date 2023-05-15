@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Bring Me The Horizon - Kingslayer (feat. BABYMETAL).mp3-f975ab8f6b7b3e91e0172ded6b1d7972.mp3str"
+
+[deps]
+
+source_file="res://songs/Bring Me The Horizon - Kingslayer (feat. BABYMETAL).mp3"
+dest_files=[ "res://.import/Bring Me The Horizon - Kingslayer (feat. BABYMETAL).mp3-f975ab8f6b7b3e91e0172ded6b1d7972.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
