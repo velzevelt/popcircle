@@ -1,8 +1,10 @@
-extends Button
+class_name ReplayButtonNode
+extends Node
 
+onready var target = get_parent() # Button
 
 func _ready():
-	connect("pressed", self, "_on_pressed")
+	target.connect("pressed", self, "_on_pressed")
 	
 
 func _on_pressed():

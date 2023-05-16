@@ -1,53 +1,175 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://scenes/main_menu/button_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://sprites/play_button.svg" type="Texture" id=1]
 [ext_resource path="res://scenes/main_menu/exit_button.gd" type="Script" id=2]
-[ext_resource path="res://scenes/main_menu/play_button.gd" type="Script" id=3]
-[ext_resource path="res://scenes/main_menu/button_normal.tres" type="StyleBox" id=4]
-[ext_resource path="res://scenes/main_menu/button_hover.tres" type="StyleBox" id=5]
-[ext_resource path="res://scenes/main_menu/button_pressed.tres" type="StyleBox" id=6]
+[ext_resource path="res://sprites/exit_button.svg" type="Texture" id=3]
+[ext_resource path="res://sprites/settings_button.svg" type="Texture" id=4]
+[ext_resource path="res://scenes/texture_button_color_tint/texture_button_color_tint.gd" type="Script" id=5]
+[ext_resource path="res://scenes/main_menu/play_button.gd" type="Script" id=6]
+[ext_resource path="res://scenes/static_bubble/static_bubble.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/spawner/spawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://sprites/top_panel.svg" type="Texture" id=9]
+[ext_resource path="res://sprites/about_button.svg" type="Texture" id=10]
+[ext_resource path="res://scenes/scene_transition/scene_transition.gd" type="Script" id=11]
+[ext_resource path="res://scenes/main_menu/about_node.gd" type="Script" id=12]
+[ext_resource path="res://sprites/close_button.svg" type="Texture" id=13]
+[ext_resource path="res://scenes/main_menu/default_font.tres" type="DynamicFont" id=14]
 
-[node name="Menu" type="Control"]
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.054902, 0.054902, 0.054902, 1 )
+corner_radius_top_left = 126
+
+[sub_resource type="StyleBoxLine" id=2]
+color = Color( 1, 1, 1, 1 )
+thickness = 5
+
+[node name="World" type="Node2D"]
+
+[node name="Spawner" parent="." instance=ExtResource( 8 )]
+bubble_scene = ExtResource( 7 )
+max_objects = 25
+spawn_per_tick = 3
+
+[node name="MenuL" type="CanvasLayer" parent="."]
+
+[node name="Menu" type="Control" parent="MenuL"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="TopPanel" type="TextureRect" parent="MenuL/Menu"]
+self_modulate = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.109804, 0.109804, 0.109804, 1 )
+margin_left = -24.0
+margin_top = -29.0
+margin_right = 11.0
+margin_bottom = 147.0
+texture = ExtResource( 9 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuL/Menu/TopPanel"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -400.0
-margin_top = -324.0
-margin_right = 400.0
-margin_bottom = 324.0
-custom_constants/separation = 20
+margin_left = -264.5
+margin_top = -47.0
+margin_right = 261.5
+margin_bottom = 60.0
+custom_constants/separation = 34
+alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer"]
-margin_right = 800.0
-margin_bottom = 314.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = ExtResource( 1 )
-custom_styles/hover = ExtResource( 5 )
-custom_styles/pressed = ExtResource( 6 )
-custom_styles/normal = ExtResource( 4 )
-text = "Play"
-script = ExtResource( 3 )
+[node name="PlayButton" type="TextureButton" parent="MenuL/Menu/TopPanel/HBoxContainer"]
+self_modulate = Color( 0.431373, 0.94902, 0.541176, 1 )
+margin_left = 74.0
+margin_right = 174.0
+margin_bottom = 107.0
+texture_normal = ExtResource( 1 )
+script = ExtResource( 5 )
 
-[node name="Button3" type="Button" parent="VBoxContainer"]
-margin_top = 334.0
-margin_right = 800.0
-margin_bottom = 648.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = ExtResource( 1 )
-custom_styles/hover = ExtResource( 5 )
-custom_styles/pressed = ExtResource( 6 )
-custom_styles/normal = ExtResource( 4 )
-text = "Exit"
+[node name="PlayButtonNode" type="Node" parent="MenuL/Menu/TopPanel/HBoxContainer/PlayButton"]
+script = ExtResource( 6 )
+
+[node name="SettingsButton" type="TextureButton" parent="MenuL/Menu/TopPanel/HBoxContainer"]
+self_modulate = Color( 1, 0.901961, 0.513726, 1 )
+margin_left = 208.0
+margin_right = 308.0
+margin_bottom = 107.0
+texture_normal = ExtResource( 4 )
+script = ExtResource( 5 )
+
+[node name="ExitButton" type="TextureButton" parent="MenuL/Menu/TopPanel/HBoxContainer"]
+self_modulate = Color( 0.956863, 0.352941, 0.396078, 1 )
+margin_left = 342.0
+margin_right = 451.0
+margin_bottom = 107.0
+texture_normal = ExtResource( 3 )
+script = ExtResource( 5 )
+
+[node name="ExitButtonNode" type="Node" parent="MenuL/Menu/TopPanel/HBoxContainer/ExitButton"]
 script = ExtResource( 2 )
+
+[node name="AboutButton" type="TextureButton" parent="MenuL/Menu"]
+self_modulate = Color( 0.592157, 0, 1, 1 )
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -160.0
+margin_top = -190.0
+margin_right = 30.0
+texture_normal = ExtResource( 10 )
+expand = true
+script = ExtResource( 5 )
+
+[node name="Panel" type="Panel" parent="MenuL/Menu/AboutButton"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = -22.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 1 )
+
+[node name="BGL" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="ColorRect" parent="BGL"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.109804, 0.109804, 0.109804, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AboutL" type="CanvasLayer" parent="."]
+offset = Vector2( 2000, 0 )
+transform = Transform2D( 1, 0, 0, 1, 2000, 0 )
+script = ExtResource( 11 )
+
+[node name="Control" type="Control" parent="AboutL"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="AboutL/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.596078 )
+
+[node name="CloseMenuButton" type="TextureButton" parent="AboutL/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -192.0
+margin_bottom = 192.0
+texture_normal = ExtResource( 13 )
+script = ExtResource( 5 )
+
+[node name="Header" type="VBoxContainer" parent="AboutL/Control"]
+anchor_right = 1.0
+margin_bottom = 179.0
+mouse_filter = 2
+custom_constants/separation = 13
+
+[node name="Label" type="Label" parent="AboutL/Control/Header"]
+margin_right = 1920.0
+margin_bottom = 168.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 14 )
+text = "About Project"
+align = 1
+valign = 2
+
+[node name="Underline" type="Panel" parent="AboutL/Control/Header"]
+margin_left = 410.0
+margin_top = 181.0
+margin_right = 1510.0
+margin_bottom = 181.0
+rect_min_size = Vector2( 1100, 0 )
+size_flags_horizontal = 6
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 2 )
+
+[node name="About" type="Node" parent="AboutL"]
+script = ExtResource( 12 )
+
+[connection signal="pressed" from="MenuL/Menu/AboutButton" to="AboutL/About" method="_on_AboutButton_pressed"]
+[connection signal="pressed" from="AboutL/Control/CloseMenuButton" to="AboutL/About" method="_on_CloseMenuButton_pressed"]

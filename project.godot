@@ -10,9 +10,29 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "BackButtonNode",
+"language": "GDScript",
+"path": "res://scenes/game/back_button.gd"
+}, {
+"base": "Node",
 "class": "CalculateAccurancy",
 "language": "GDScript",
 "path": "res://scenes/game/calculate_accurancy.gd"
+}, {
+"base": "Node",
+"class": "ExitButtonNode",
+"language": "GDScript",
+"path": "res://scenes/main_menu/exit_button.gd"
+}, {
+"base": "Node",
+"class": "PlayButtonNode",
+"language": "GDScript",
+"path": "res://scenes/main_menu/play_button.gd"
+}, {
+"base": "Node",
+"class": "ReplayButtonNode",
+"language": "GDScript",
+"path": "res://scenes/game/replay_button.gd"
 }, {
 "base": "Resource",
 "class": "SongData",
@@ -30,7 +50,11 @@ _global_script_classes=[ {
 "path": "res://scenes/spectrum/spectrum.gd"
 } ]
 _global_script_class_icons={
+"BackButtonNode": "",
 "CalculateAccurancy": "",
+"ExitButtonNode": "",
+"PlayButtonNode": "",
+"ReplayButtonNode": "",
 "SongData": "",
 "Spawner": "",
 "Spectrum": ""

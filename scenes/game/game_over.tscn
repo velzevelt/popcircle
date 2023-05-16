@@ -64,6 +64,8 @@ custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 7 )
 custom_styles/normal = ExtResource( 3 )
 text = "Back"
+
+[node name="BackButtonNode" type="Node" parent="Panel/HBoxContainer/Button"]
 script = ExtResource( 6 )
 
 [node name="Button2" type="Button" parent="Panel/HBoxContainer"]
@@ -77,4 +79,6 @@ custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 7 )
 custom_styles/normal = ExtResource( 3 )
 text = "Replay"
+
+[node name="ReplayButtonNode" type="Node" parent="Panel/HBoxContainer/Button2"]
 script = ExtResource( 2 )

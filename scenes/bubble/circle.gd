@@ -10,21 +10,22 @@ onready var life_timer = $LifeTimer as Timer
 onready var click_sfx = $ClickSfx as AudioStreamPlayer
 
 
-export var draw_outline = true
+export var draw_outline := true
 export var albedo: Color = Color.yellow
 export var outline_color: Color = Color.black
 export var fade_out_color: Color = Color.yellowgreen
-export var init_radius = 100
-export var init_outline_thickness = 10
+export var init_radius := 100
+export var init_outline_thickness := 10
 
-export var fade_in_duration = 0.8
-export var fade_out_duration = 0.1
+export var fade_in_duration := 0.8
+export var fade_out_duration := 0.1
+export var is_static := false
 
-var outline_thickness = init_outline_thickness
-var radius = init_radius
+var outline_thickness := init_outline_thickness
+var radius := init_radius
 
-var _mouse_entered = false
-var _handled = false
+var _mouse_entered := false
+var _handled := false
 
 func _draw():
 	if draw_outline:
@@ -35,7 +36,7 @@ func _draw():
 	
 
 func _input(event):
-	if Engine.is_editor_hint():
+	if Engine.is_editor_hint() or is_static:
 		return
 	
 	if event is InputEventScreenTouch:

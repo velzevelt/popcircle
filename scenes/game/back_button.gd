@@ -1,9 +1,13 @@
-extends Button
+class_name BackButtonNode
+extends Node
+
+export var back_scene = preload("res://scenes/main_menu/main_menu.tscn")
+onready var target = get_parent() # Button
 
 func _ready():
-	connect("pressed", self, "_on_pressed")
+	target.connect("pressed", self, "_on_pressed")
 
 
 func _on_pressed():
-	get_tree().change_scene("res://scenes/menu/main_menu.tscn")
+	get_tree().change_scene_to(back_scene)
 	get_tree().paused = false
