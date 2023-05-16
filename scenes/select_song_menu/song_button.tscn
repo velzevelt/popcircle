@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/select_song_menu/song_button.gd" type="Script" id=1]
 [ext_resource path="res://scenes/select_song_menu/button_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://style/panel_black.tres" type="StyleBox" id=3]
 
 [node name="SongButton" type="Button"]
 margin_right = 916.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 0, 150 )
 custom_fonts/font = ExtResource( 2 )
+custom_styles/normal = ExtResource( 3 )
 text = "Song Name"
 script = ExtResource( 1 )

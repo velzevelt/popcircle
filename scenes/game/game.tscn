@@ -15,7 +15,7 @@
 [ext_resource path="res://scenes/texture_button_color_tint/texture_button_color_tint.gd" type="Script" id=13]
 [ext_resource path="res://scenes/game/accurancy_bar.gd" type="Script" id=14]
 [ext_resource path="res://scenes/game/music_player.gd" type="Script" id=15]
-[ext_resource path="res://songs/Bring Me The Horizon - Kingslayer (feat. BABYMETAL).mp3" type="AudioStream" id=16]
+[ext_resource path="res://songs/bmth_kinglsayer/Bring Me The Horizon - Kingslayer (feat. BABYMETAL).mp3" type="AudioStream" id=16]
 [ext_resource path="res://scenes/game/game_song_data.tres" type="Resource" id=17]
 [ext_resource path="res://scenes/main_menu/main_menu.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/game/back_button.gd" type="Script" id=19]

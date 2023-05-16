@@ -1,9 +1,21 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://scenes/main_menu/button_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://fonts/GADAQUALI.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/select_song_menu/song_button.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/game/label_font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://scenes/select_song_menu/button_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://sprites/close_button.svg" type="Texture" id=5]
+[ext_resource path="res://scenes/texture_button_color_tint/texture_button_color_tint.gd" type="Script" id=6]
+[ext_resource path="res://style/panel_black.tres" type="StyleBox" id=7]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 0.713726 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 160
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=5]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -14,37 +26,34 @@ anchor_bottom = 1.0
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 15
-custom_constants/margin_top = 15
-custom_constants/margin_left = 15
-custom_constants/margin_bottom = 15
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
-margin_left = 15.0
-margin_top = 15.0
-margin_right = 1905.0
-margin_bottom = 1065.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+custom_styles/panel = SubResource( 4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 1883.0
-margin_bottom = 1043.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer"]
-margin_right = 1876.0
-margin_bottom = 128.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+margin_right = 1920.0
+margin_bottom = 158.0
+
+[node name="Title" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_right = 1920.0
+margin_bottom = 158.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-size_flags_stretch_ratio = 0.1
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Select Song"
 align = 1
+valign = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
-margin_top = 132.0
-margin_right = 1876.0
-margin_bottom = 1036.0
+margin_top = 162.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 12
@@ -55,44 +64,52 @@ custom_constants/margin_bottom = 12
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer"]
 margin_left = 12.0
 margin_top = 12.0
-margin_right = 1864.0
-margin_bottom = 892.0
+margin_right = 1908.0
+margin_bottom = 906.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Left" type="ScrollContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
-margin_right = 916.0
-margin_bottom = 880.0
+margin_right = 938.0
+margin_bottom = 894.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Buttons" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Left"]
-margin_right = 916.0
-margin_bottom = 880.0
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Left"]
+margin_right = 938.0
+margin_bottom = 894.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 5 )
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Left/PanelContainer"]
+margin_right = 938.0
+margin_bottom = 894.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 11
 
-[node name="Button" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Left/Buttons" instance=ExtResource( 2 )]
+[node name="Button" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Left/PanelContainer/Buttons" instance=ExtResource( 2 )]
+margin_right = 938.0
 margin_bottom = 150.0
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
-margin_left = 920.0
-margin_right = 932.0
-margin_bottom = 880.0
+margin_left = 942.0
+margin_right = 954.0
+margin_bottom = 894.0
 custom_constants/separation = 12
 custom_styles/separator = SubResource( 2 )
 
 [node name="Right" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
-margin_left = 936.0
-margin_right = 1852.0
-margin_bottom = 880.0
+margin_left = 958.0
+margin_right = 1896.0
+margin_bottom = 894.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Right"]
-margin_right = 916.0
-margin_bottom = 67.0
+margin_right = 938.0
+margin_bottom = 68.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 size_flags_stretch_ratio = 0.1
@@ -101,23 +118,48 @@ text = "Song Info"
 align = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Right"]
-margin_top = 71.0
-margin_right = 916.0
-margin_bottom = 741.0
+margin_top = 72.0
+margin_right = 938.0
+margin_bottom = 753.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Info" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Right/ScrollContainer"]
-margin_right = 916.0
-margin_bottom = 670.0
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Right/ScrollContainer"]
+margin_right = 938.0
+margin_bottom = 681.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 7 )
+
+[node name="Info" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Right/ScrollContainer/PanelContainer"]
+margin_right = 938.0
+margin_bottom = 681.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Right"]
-margin_top = 745.0
-margin_right = 916.0
-margin_bottom = 880.0
+[node name="PlayButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Right"]
+margin_top = 757.0
+margin_right = 938.0
+margin_bottom = 894.0
 size_flags_vertical = 11
 size_flags_stretch_ratio = 0.2
 custom_fonts/font = ExtResource( 4 )
+custom_styles/normal = ExtResource( 7 )
 text = "Play"
+
+[node name="Close" type="HBoxContainer" parent="MarginContainer/PanelContainer"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+
+[node name="CloseButton" type="TextureButton" parent="MarginContainer/PanelContainer/Close"]
+margin_left = 1728.0
+margin_right = 1920.0
+margin_bottom = 192.0
+size_flags_horizontal = 9
+size_flags_vertical = 2
+texture_normal = ExtResource( 5 )
+script = ExtResource( 6 )
