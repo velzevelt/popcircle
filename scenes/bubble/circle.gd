@@ -42,7 +42,7 @@ func _input(event):
 	if event is InputEventScreenTouch:
 		if event.pressed and _mouse_entered and not _handled:
 			_handle_click()
-	elif Input.is_action_pressed("click") and _mouse_entered and not _handled:
+	elif Input.is_action_just_pressed("click") and _mouse_entered and not _handled:
 		_handle_click()
 
 

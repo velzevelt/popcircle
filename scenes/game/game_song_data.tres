@@ -4,8 +4,3 @@
 
 [resource]
 script = ExtResource( 1 )
-author = ""
-song_name = ""
-tags = PoolStringArray(  )
-_difficulty_preset = ""
-_player_statistics = ""

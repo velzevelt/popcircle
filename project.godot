@@ -30,6 +30,11 @@ _global_script_classes=[ {
 "path": "res://scenes/main_menu/play_button.gd"
 }, {
 "base": "Node",
+"class": "PressColorTintNode",
+"language": "GDScript",
+"path": "res://scenes/button_color_tint/press_color_tint.gd"
+}, {
+"base": "Node",
 "class": "ReplayButtonNode",
 "language": "GDScript",
 "path": "res://scenes/game/replay_button.gd"
@@ -59,6 +64,7 @@ _global_script_class_icons={
 "CalculateAccurancy": "",
 "ExitButtonNode": "",
 "PlayButtonNode": "",
+"PressColorTintNode": "",
 "ReplayButtonNode": "",
 "SongData": "",
 "SongLoaderStatic": "",
@@ -85,10 +91,10 @@ gdscript/warnings/return_value_discarded=false
 
 window/size/width=1920
 window/size/height=1080
-window/size/resizable=false
 window/size/test_width=960
 window/size/test_height=540
 window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [editor_plugins]
 

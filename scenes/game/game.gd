@@ -2,9 +2,10 @@ extends Node2D
 
 signal finished
 
+var song_data: Resource = preload("res://scenes/game/game_song_data.tres")
+
 export var main_menu: PackedScene
 export var finish_wait_time := 0.4
-export var song_data: Resource
 
 
 func _unhandled_input(event):

@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/main_menu/exit_button.gd" type="Script" id=2]
 [ext_resource path="res://sprites/exit_button.svg" type="Texture" id=3]
 [ext_resource path="res://sprites/settings_button.svg" type="Texture" id=4]
-[ext_resource path="res://scenes/texture_button_color_tint/texture_button_color_tint.gd" type="Script" id=5]
+[ext_resource path="res://scenes/button_color_tint/press_color_tint.gd" type="Script" id=5]
 [ext_resource path="res://scenes/static_bubble/static_bubble.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/spawner/spawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://sprites/top_panel.svg" type="Texture" id=9]
@@ -59,6 +59,8 @@ margin_left = 74.0
 margin_right = 174.0
 margin_bottom = 107.0
 texture_normal = ExtResource( 1 )
+
+[node name="PressColorTintNode" type="Node" parent="MenuL/Menu/TopPanel/HBoxContainer/PlayButton"]
 script = ExtResource( 5 )
 
 [node name="SettingsButton" type="TextureButton" parent="MenuL/Menu/TopPanel/HBoxContainer"]
@@ -67,6 +69,8 @@ margin_left = 208.0
 margin_right = 308.0
 margin_bottom = 107.0
 texture_normal = ExtResource( 4 )
+
+[node name="PressColorTintNode2" type="Node" parent="MenuL/Menu/TopPanel/HBoxContainer/SettingsButton"]
 script = ExtResource( 5 )
 
 [node name="ExitButton" type="TextureButton" parent="MenuL/Menu/TopPanel/HBoxContainer"]
@@ -75,10 +79,12 @@ margin_left = 342.0
 margin_right = 451.0
 margin_bottom = 107.0
 texture_normal = ExtResource( 3 )
-script = ExtResource( 5 )
 
 [node name="ExitButtonNode" type="Node" parent="MenuL/Menu/TopPanel/HBoxContainer/ExitButton"]
 script = ExtResource( 2 )
+
+[node name="PressColorTintNode3" type="Node" parent="MenuL/Menu/TopPanel/HBoxContainer/ExitButton"]
+script = ExtResource( 5 )
 
 [node name="AboutButton" type="TextureButton" parent="MenuL/Menu"]
 self_modulate = Color( 0.592157, 0, 1, 1 )
@@ -91,7 +97,6 @@ margin_top = -190.0
 margin_right = 30.0
 texture_normal = ExtResource( 10 )
 expand = true
-script = ExtResource( 5 )
 
 [node name="Panel" type="Panel" parent="MenuL/Menu/AboutButton"]
 show_behind_parent = true
@@ -101,6 +106,9 @@ margin_left = 25.0
 margin_top = -22.0
 mouse_filter = 2
 custom_styles/panel = SubResource( 1 )
+
+[node name="PressColorTintNode" type="Node" parent="MenuL/Menu/AboutButton"]
+script = ExtResource( 5 )
 
 [node name="BGL" type="CanvasLayer" parent="."]
 layer = -1
@@ -130,13 +138,16 @@ script = ExtResource( 11 )
 
 [node name="SelectSongMenu" parent="SelectSongL" instance=ExtResource( 15 )]
 
+[node name="PlayButton" parent="SelectSongL/SelectSongMenu" index="2"]
+margin_top = -131.0
+
 [node name="SelectSongNode" type="Node" parent="SelectSongL"]
 script = ExtResource( 16 )
 
 [connection signal="pressed" from="MenuL/Menu/TopPanel/HBoxContainer/PlayButton" to="SelectSongL/SelectSongNode" method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="MenuL/Menu/AboutButton" to="AboutL/About" method="_on_AboutButton_pressed"]
 [connection signal="pressed" from="AboutL/AboutControl/CloseMenuButton" to="AboutL/About" method="_on_CloseMenuButton_pressed"]
-[connection signal="pressed" from="SelectSongL/SelectSongMenu/MarginContainer/PanelContainer/Close/CloseButton" to="SelectSongL/SelectSongNode" method="_on_CloseButton_pressed"]
+[connection signal="pressed" from="SelectSongL/SelectSongMenu/Close/CloseButton" to="SelectSongL/SelectSongNode" method="_on_CloseButton_pressed"]
 
 [editable path="AboutL/AboutControl"]
 [editable path="SelectSongL/SelectSongMenu"]
