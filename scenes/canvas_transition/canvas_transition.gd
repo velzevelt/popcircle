@@ -7,14 +7,14 @@ onready var init_offset = offset
 
 func _ready():
 	if autostart:
-		fade_in()
+		anim_in()
 
 
-func fade_in():
+func anim_in():
 	var tween = create_tween()
 	tween.tween_property(self, 'offset', Vector2.ZERO, anim_duration)
 
 
-func fade_out():
+func anim_out():
 	var tween = create_tween()
 	tween.tween_property(self, 'offset', init_offset, anim_duration)

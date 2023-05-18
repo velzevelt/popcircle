@@ -30,11 +30,6 @@ _global_script_classes=[ {
 "path": "res://scenes/main_menu/exit_button.gd"
 }, {
 "base": "Node",
-"class": "PlayButtonNode",
-"language": "GDScript",
-"path": "res://scenes/main_menu/play_button.gd"
-}, {
-"base": "Node",
 "class": "PressColorTintNode",
 "language": "GDScript",
 "path": "res://scenes/button_color_tint/press_color_tint.gd"
@@ -69,7 +64,6 @@ _global_script_class_icons={
 "CalculateAccurancy": "",
 "DirectoryWatcher": "",
 "ExitButtonNode": "",
-"PlayButtonNode": "",
 "PressColorTintNode": "",
 "ReplayButtonNode": "",
 "SongData": "",

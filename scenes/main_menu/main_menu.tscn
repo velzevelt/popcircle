@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://sprites/play_button.svg" type="Texture" id=1]
 [ext_resource path="res://scenes/main_menu/exit_button.gd" type="Script" id=2]
@@ -10,13 +10,11 @@
 [ext_resource path="res://scenes/spawner/spawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://sprites/top_panel.svg" type="Texture" id=9]
 [ext_resource path="res://sprites/about_button.svg" type="Texture" id=10]
-[ext_resource path="res://scenes/scene_transition/scene_transition.gd" type="Script" id=11]
-[ext_resource path="res://scenes/main_menu/about_node.gd" type="Script" id=12]
+[ext_resource path="res://scenes/canvas_transition/canvas_transition.gd" type="Script" id=11]
+[ext_resource path="res://scenes/canvas_transition/canvas_node.gd" type="Script" id=12]
 [ext_resource path="res://scenes/about_menu/about.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/main_menu/default_font.tres" type="DynamicFont" id=14]
 [ext_resource path="res://scenes/select_song_menu/select_song_menu.tscn" type="PackedScene" id=15]
-[ext_resource path="res://scenes/select_song_menu/select_song_node.gd" type="Script" id=16]
-[ext_resource path="res://scenes/main_menu/settings_node.gd" type="Script" id=17]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.054902, 0.054902, 0.054902, 1 )
@@ -153,7 +151,7 @@ script = ExtResource( 11 )
 [node name="SelectSongMenu" parent="SelectSongL" instance=ExtResource( 15 )]
 
 [node name="SelectSongNode" type="Node" parent="SelectSongL"]
-script = ExtResource( 16 )
+script = ExtResource( 12 )
 
 [node name="SettingsL" type="CanvasLayer" parent="."]
 offset = Vector2( 2000, 0 )
@@ -206,15 +204,15 @@ size_flags_horizontal = 6
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 2 )
 
-[node name="SetingsNode" type="Node" parent="SettingsL"]
-script = ExtResource( 17 )
+[node name="SettingsNode" type="Node" parent="SettingsL"]
+script = ExtResource( 12 )
 
-[connection signal="pressed" from="MenuL/Menu/TopPanel/HBoxContainer/PlayButton" to="SelectSongL/SelectSongNode" method="_on_PlayButton_pressed"]
-[connection signal="pressed" from="MenuL/Menu/TopPanel/HBoxContainer/SettingsButton" to="SettingsL/SetingsNode" method="_on_SettingsButton_pressed"]
-[connection signal="pressed" from="MenuL/Menu/AboutButton" to="AboutL/About" method="_on_AboutButton_pressed"]
-[connection signal="pressed" from="AboutL/AboutControl/CloseMenuButton" to="AboutL/About" method="_on_CloseMenuButton_pressed"]
-[connection signal="pressed" from="SelectSongL/SelectSongMenu/Close/CloseButton" to="SelectSongL/SelectSongNode" method="_on_CloseButton_pressed"]
-[connection signal="pressed" from="SettingsL/Settings/CloseMenuButton" to="SettingsL/SetingsNode" method="_on_CloseMenuButton_pressed"]
+[connection signal="pressed" from="MenuL/Menu/TopPanel/HBoxContainer/PlayButton" to="SelectSongL/SelectSongNode" method="_on_activate_button_pressed"]
+[connection signal="pressed" from="MenuL/Menu/TopPanel/HBoxContainer/SettingsButton" to="SettingsL/SettingsNode" method="_on_activate_button_pressed"]
+[connection signal="pressed" from="MenuL/Menu/AboutButton" to="AboutL/About" method="_on_activate_button_pressed"]
+[connection signal="pressed" from="AboutL/AboutControl/CloseMenuButton" to="AboutL/About" method="_on_close_button_pressed"]
+[connection signal="pressed" from="SelectSongL/SelectSongMenu/Close/CloseButton" to="SelectSongL/SelectSongNode" method="_on_close_button_pressed"]
+[connection signal="pressed" from="SettingsL/Settings/CloseMenuButton" to="SettingsL/SettingsNode" method="_on_close_button_pressed"]
 
 [editable path="AboutL/AboutControl"]
 [editable path="SelectSongL/SelectSongMenu"]
