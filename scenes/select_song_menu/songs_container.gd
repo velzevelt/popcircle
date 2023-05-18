@@ -5,6 +5,7 @@ signal double_clicked
 
 export var song_button_scene: PackedScene
 onready var songs_container = $"%Songs"
+onready var search_input = $"%Title"
 
 
 func _ready():
@@ -37,3 +38,14 @@ func _on_song_selected(song_data, sender):
 
 func _on_double_clicked():
 	emit_signal("double_clicked")
+
+
+func _on_search_input_text_changed(new_text):
+	var text = search_input.text.to_lower()
+	if text == "":
+		for c in get_children():
+			c.visible = true
+		return
+	
+	for c in get_children():
+		c.visible = text in c.song_data.name.to_lower()

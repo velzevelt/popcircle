@@ -29,3 +29,7 @@ func _on_SongButton_toggled(button_pressed):
 func _on_SongButton_double_clicked():
 	emit_signal("song_selected", song_data, self)
 	emit_signal("double_clicked")
+
+
+func _ready():
+	rect_pivot_offset = rect_size / 2

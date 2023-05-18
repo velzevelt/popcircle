@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://fonts/GADAQUALI.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/select_song_menu/song_button.tscn" type="PackedScene" id=2]
@@ -7,6 +7,10 @@
 [ext_resource path="res://sprites/close_button.svg" type="Texture" id=5]
 [ext_resource path="res://scenes/button_color_tint/press_color_tint.gd" type="Script" id=6]
 [ext_resource path="res://scenes/select_song_menu/play_button.gd" type="Script" id=7]
+[ext_resource path="res://scenes/select_song_menu/open_directory.gd" type="Script" id=8]
+[ext_resource path="res://sprites/directory_icon.svg" type="Texture" id=9]
+[ext_resource path="res://sprites/search_icon.svg" type="Texture" id=10]
+[ext_resource path="res://scenes/select_song_menu/search_button_node.gd" type="Script" id=11]
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0, 0, 0, 0.713726 )
@@ -14,6 +18,12 @@ bg_color = Color( 0, 0, 0, 0.713726 )
 [sub_resource type="DynamicFont" id=3]
 size = 160
 font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="StyleBoxEmpty" id=16]
+
+[sub_resource type="StyleBoxEmpty" id=17]
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.145098, 0.145098, 0.145098, 1 )
@@ -32,6 +42,30 @@ bg_color = Color( 0, 0, 0, 1 )
 corner_radius_top_left = 150
 corner_radius_top_right = 150
 
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0.145098, 0.145098, 0.145098, 1 )
+corner_radius_top_right = 150
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.552941, 0.552941, 0.552941, 1 )
+corner_radius_top_right = 150
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0, 0, 0, 1 )
+corner_radius_top_right = 150
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.145098, 0.145098, 0.145098, 1 )
+corner_radius_bottom_right = 150
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.552941, 0.552941, 0.552941, 1 )
+corner_radius_bottom_right = 150
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0, 0, 0, 1 )
+corner_radius_bottom_right = 150
+
 [node name="SelectSongMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -49,15 +83,21 @@ margin_bottom = 1080.0
 margin_right = 1920.0
 margin_bottom = 158.0
 
-[node name="Title" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Title" type="LineEdit" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 margin_right = 1920.0
 margin_bottom = 158.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 custom_fonts/font = SubResource( 3 )
-text = "Select Song"
+custom_styles/read_only = SubResource( 15 )
+custom_styles/focus = SubResource( 16 )
+custom_styles/normal = SubResource( 17 )
 align = 1
-valign = 1
+editable = false
+placeholder_text = "Select Song"
+placeholder_alpha = 1.0
+caret_blink = true
 
 [node name="Content" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
 margin_top = 162.0
@@ -118,7 +158,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -104.0
-margin_top = -103.0
+margin_top = -159.0
 margin_right = 90.0
 custom_styles/hover = SubResource( 6 )
 custom_styles/pressed = SubResource( 7 )
@@ -140,6 +180,61 @@ texture = ExtResource( 4 )
 [node name="PlayButton" type="Node" parent="PlayButton"]
 script = ExtResource( 7 )
 
+[node name="OpenSongDirectory" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = -44.0
+margin_top = -159.0
+margin_right = 150.0
+custom_styles/hover = SubResource( 11 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
+
+[node name="TextureRect" type="TextureRect" parent="OpenSongDirectory"]
+self_modulate = Color( 0.870588, 0.87451, 0.223529, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -42.0
+margin_top = -34.0
+margin_right = 58.0
+margin_bottom = 66.0
+texture = ExtResource( 9 )
+expand = true
+
+[node name="OpenDirectory" type="Node" parent="OpenSongDirectory"]
+unique_name_in_owner = true
+script = ExtResource( 8 )
+dir_path = "user://songs"
+
+[node name="Search" type="Button" parent="."]
+margin_left = -44.0
+margin_right = 150.0
+margin_bottom = 159.0
+custom_styles/hover = SubResource( 13 )
+custom_styles/pressed = SubResource( 14 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/normal = SubResource( 12 )
+
+[node name="TextureRect" type="TextureRect" parent="Search"]
+self_modulate = Color( 0.223529, 0.843137, 0.87451, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -42.0
+margin_top = -66.0
+margin_right = 58.0
+margin_bottom = 34.0
+texture = ExtResource( 10 )
+expand = true
+
+[node name="SearchButtonNode" type="Node" parent="Search"]
+script = ExtResource( 11 )
+
+[connection signal="text_changed" from="PanelContainer/VBoxContainer/HBoxContainer/Title" to="PanelContainer/VBoxContainer/Content/ScrollContainer/Songs" method="_on_search_input_text_changed"]
 [connection signal="double_clicked" from="PanelContainer/VBoxContainer/Content/ScrollContainer/Songs" to="PlayButton/PlayButton" method="_on_Songs_double_clicked"]
 [connection signal="song_selected" from="PanelContainer/VBoxContainer/Content/ScrollContainer/Songs" to="PlayButton/PlayButton" method="_on_Songs_song_selected"]
 [connection signal="pressed" from="PlayButton" to="PlayButton/PlayButton" method="_on_PlayButton_pressed"]

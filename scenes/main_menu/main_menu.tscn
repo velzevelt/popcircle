@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://sprites/play_button.svg" type="Texture" id=1]
 [ext_resource path="res://scenes/main_menu/exit_button.gd" type="Script" id=2]
 [ext_resource path="res://sprites/exit_button.svg" type="Texture" id=3]
 [ext_resource path="res://sprites/settings_button.svg" type="Texture" id=4]
 [ext_resource path="res://scenes/button_color_tint/press_color_tint.gd" type="Script" id=5]
+[ext_resource path="res://sprites/close_button.svg" type="Texture" id=6]
 [ext_resource path="res://scenes/static_bubble/static_bubble.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/spawner/spawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://sprites/top_panel.svg" type="Texture" id=9]
@@ -12,12 +13,18 @@
 [ext_resource path="res://scenes/scene_transition/scene_transition.gd" type="Script" id=11]
 [ext_resource path="res://scenes/main_menu/about_node.gd" type="Script" id=12]
 [ext_resource path="res://scenes/about_menu/about.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/main_menu/default_font.tres" type="DynamicFont" id=14]
 [ext_resource path="res://scenes/select_song_menu/select_song_menu.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/select_song_menu/select_song_node.gd" type="Script" id=16]
+[ext_resource path="res://scenes/main_menu/settings_node.gd" type="Script" id=17]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.054902, 0.054902, 0.054902, 1 )
 corner_radius_top_left = 126
+
+[sub_resource type="StyleBoxLine" id=2]
+color = Color( 1, 1, 1, 1 )
+thickness = 5
 
 [node name="World" type="Node2D"]
 
@@ -128,6 +135,13 @@ script = ExtResource( 11 )
 
 [node name="AboutControl" parent="AboutL" instance=ExtResource( 13 )]
 
+[node name="Label" parent="AboutL/AboutControl/Header" index="0"]
+margin_bottom = 158.0
+
+[node name="Underline" parent="AboutL/AboutControl/Header" index="1"]
+margin_top = 171.0
+margin_bottom = 179.0
+
 [node name="About" type="Node" parent="AboutL"]
 script = ExtResource( 12 )
 
@@ -138,16 +152,69 @@ script = ExtResource( 11 )
 
 [node name="SelectSongMenu" parent="SelectSongL" instance=ExtResource( 15 )]
 
-[node name="PlayButton" parent="SelectSongL/SelectSongMenu" index="2"]
-margin_top = -131.0
-
 [node name="SelectSongNode" type="Node" parent="SelectSongL"]
 script = ExtResource( 16 )
 
+[node name="SettingsL" type="CanvasLayer" parent="."]
+offset = Vector2( 2000, 0 )
+transform = Transform2D( 1, 0, 0, 1, 2000, 0 )
+script = ExtResource( 11 )
+
+[node name="Settings" type="Control" parent="SettingsL"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="SettingsL/Settings"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.596078 )
+
+[node name="CloseMenuButton" type="TextureButton" parent="SettingsL/Settings"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -192.0
+margin_bottom = 192.0
+texture_normal = ExtResource( 6 )
+
+[node name="PressColorTintNode" type="Node" parent="SettingsL/Settings/CloseMenuButton"]
+script = ExtResource( 5 )
+
+[node name="Header" type="VBoxContainer" parent="SettingsL/Settings"]
+anchor_right = 1.0
+margin_bottom = 179.0
+mouse_filter = 2
+custom_constants/separation = 13
+
+[node name="Title" type="Label" parent="SettingsL/Settings/Header"]
+margin_right = 1920.0
+margin_bottom = 158.0
+rect_pivot_offset = Vector2( -3089, 644 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 14 )
+text = "Settings"
+align = 1
+valign = 1
+
+[node name="Underline" type="Panel" parent="SettingsL/Settings/Header"]
+margin_left = 410.0
+margin_top = 171.0
+margin_right = 1510.0
+margin_bottom = 179.0
+rect_min_size = Vector2( 1100, 0 )
+size_flags_horizontal = 6
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 2 )
+
+[node name="SetingsNode" type="Node" parent="SettingsL"]
+script = ExtResource( 17 )
+
 [connection signal="pressed" from="MenuL/Menu/TopPanel/HBoxContainer/PlayButton" to="SelectSongL/SelectSongNode" method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="MenuL/Menu/TopPanel/HBoxContainer/SettingsButton" to="SettingsL/SetingsNode" method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="MenuL/Menu/AboutButton" to="AboutL/About" method="_on_AboutButton_pressed"]
 [connection signal="pressed" from="AboutL/AboutControl/CloseMenuButton" to="AboutL/About" method="_on_CloseMenuButton_pressed"]
 [connection signal="pressed" from="SelectSongL/SelectSongMenu/Close/CloseButton" to="SelectSongL/SelectSongNode" method="_on_CloseButton_pressed"]
+[connection signal="pressed" from="SettingsL/Settings/CloseMenuButton" to="SettingsL/SetingsNode" method="_on_CloseMenuButton_pressed"]
 
 [editable path="AboutL/AboutControl"]
 [editable path="SelectSongL/SelectSongMenu"]

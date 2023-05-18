@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://scenes/game/calculate_accurancy.gd"
 }, {
 "base": "Node",
+"class": "DirectoryWatcher",
+"language": "GDScript",
+"path": "res://addons/directory_watcher.gd"
+}, {
+"base": "Node",
 "class": "ExitButtonNode",
 "language": "GDScript",
 "path": "res://scenes/main_menu/exit_button.gd"
@@ -62,6 +67,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "BackButtonNode": "",
 "CalculateAccurancy": "",
+"DirectoryWatcher": "",
 "ExitButtonNode": "",
 "PlayButtonNode": "",
 "PressColorTintNode": "",
@@ -75,7 +81,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Bubbles"
-run/main_scene="res://scenes/game/game.tscn"
+run/main_scene="res://scenes/main_menu/main_menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
