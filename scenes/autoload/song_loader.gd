@@ -3,6 +3,7 @@ extends Node
 
 var _songs_path: String = "res://songs"
 var _user_songs_path: String = "user://songs"
+var _path_to_readme_file: String = "res://songs/readme.txt"
 var _songs: Array = []
 
 
@@ -24,7 +25,12 @@ func _check_user_songs_dir(path: String) -> void:
 	err = dir.make_dir(path)
 	
 	if err == OK:
-		push_warning("User songs directory was successfully created")
+		print("User songs directory was successfully created")
+		
+		# Add readme to user songs dir
+		if dir.copy(_path_to_readme_file, path.plus_file(_path_to_readme_file.get_file())) != OK:
+			push_warning("Readme file for user songs was not added")
+		
 	else:
 		push_error("Cannot create user songs directory %s" % path)
 
@@ -36,8 +42,6 @@ static func load_songs(path: String, extension: String = "mp3") -> Array:
 	
 	
 	# Godot add .remap on the end of exported files
-	
-	# WARN If it does not work with user:// path, add another check for that case
 	if not OS.has_feature('editor') and not extension.ends_with('.remap') and "res://" in path:
 		extension += '.remap'
 	
