@@ -1,17 +1,29 @@
 extends Node
 
 onready var target = get_parent()
+var _screen_bounds: Vector2 = _get_screen_bounds()
+
+func _get_screen_bounds() -> Vector2:
+	var bounds = Vector2()
+	bounds.x = ProjectSettings.get_setting('display/window/size/test_width')
+	bounds.y = ProjectSettings.get_setting('display/window/size/test_height')
+	
+	if bounds.x > 0 and bounds.y > 0:
+		return bounds
+	else:
+		bounds.x = ProjectSettings.get_setting('display/window/size/width')
+		bounds.y = ProjectSettings.get_setting('display/window/size/height')
+		return bounds
 
 
-func get_random_position_on_screen():
-	var bounds = get_tree().root.get_size()
+func get_random_position_on_screen() -> Vector2:
 	var result = Vector2()
-	result.x = randi() % int(bounds.x)
-	result.y = randi() % int(bounds.y)
+	result.x = randi() % int(_screen_bounds.x)
+	result.y = randi() % int(_screen_bounds.y)
 	
 	return result
 
-func apply_radius_to_bounds(position: Vector2, radius: float, bounds: Vector2 = get_tree().root.get_size()):
+func apply_radius_to_bounds(position: Vector2, radius: float, bounds: Vector2 = _screen_bounds) -> Vector2:
 	if position.x + radius > bounds.x:
 		position.x -= radius
 	elif position.x - radius < 0:

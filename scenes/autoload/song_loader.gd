@@ -41,9 +41,9 @@ static func load_songs(path: String, extension: String = "mp3") -> Array:
 		extension = "." + extension
 	
 	
-	# Godot add .remap on the end of exported files
-	if not OS.has_feature('editor') and not extension.ends_with('.remap') and "res://" in path:
-		extension += '.remap'
+	# Godot3 add .import on the end of exported files
+	if not OS.has_feature('editor') and not extension.ends_with('.import') and "res://" in path:
+		extension += '.import'
 	
 	
 	var result = []
@@ -55,16 +55,17 @@ static func load_songs(path: String, extension: String = "mp3") -> Array:
 		
 		while not file_name == "":
 			var file_path = path + "/" + file_name
+			print(file_path)
 			
 			if dir.current_is_dir():
-				result.append_array(load_resources(file_path, extension))
+				result.append_array(load_songs(file_path, extension))
 			else:
 				if file_name.ends_with(extension):
 					
-					# Godot add .remap on the end of exported files, but ResourceLoader cannot recognize those files
-					# Need trim from .remap from end to fix it
-					if not OS.has_feature('editor') and file_name.ends_with('.remap'):
-						file_path = file_path.trim_suffix('.remap')
+					# Godot3 add .import on the end of exported files, but ResourceLoader cannot recognize those files
+					# Need trim from .import from end to fix it
+					if not OS.has_feature('editor') and file_name.ends_with('.import'):
+						file_path = file_path.trim_suffix('.import')
 					
 					if ResourceLoader.exists(file_path):
 						var data = ResourceLoader.load(file_path)
@@ -82,6 +83,8 @@ static func load_songs(path: String, extension: String = "mp3") -> Array:
 							stream = AudioStreamMP3.new()
 						elif file_path.ends_with("ogg"):
 							stream = AudioStreamOGGVorbis.new()
+						elif file_path.ends_with("wav"):
+							stream = AudioStreamSample.new()
 						else:
 							push_error("%s extension does not recognised or not supported" % extension)
 							continue
@@ -106,43 +109,5 @@ static func load_songs(path: String, extension: String = "mp3") -> Array:
 	
 	return result
 
-
-
-static func load_resources(path: String, resource_name: String) -> Array:
-	# Godot add .remap on the end of exported files
-	if not OS.has_feature('editor') and not resource_name.ends_with('.remap'):
-		resource_name += '.remap'
-	
-	var result = []
-	var dir = Directory.new()
-
-	if dir.open(path) == OK:
-		dir.list_dir_begin(true)
-		var file_name = dir.get_next()
-		
-		while not file_name == "":
-			var file_path = path + "/" + file_name
-			
-			if dir.current_is_dir():
-				result.append_array(load_resources(file_path, resource_name))
-			else:
-				if file_name == resource_name:
-					
-					# Godot add .remap on the end of exported files, but ResourceLoader cannot recognize those files
-					# Need trim from .remap from end to fix it
-					if not OS.has_feature('editor') and file_name.ends_with('.remap'):
-						file_path = file_path.trim_suffix('.remap')
-					
-					if ResourceLoader.exists(file_path):
-						var data = ResourceLoader.load(file_path)
-						result.append(data)
-					else:
-						push_error("Can't load at %s file does't exist" % file_path)
-			
-			file_name = dir.get_next()
-	else:
-		push_error("Can't open scenes at " + path)
-	
-	return result
 
 

@@ -5,10 +5,6 @@ export var anim_duration := 0.3
 onready var init_scale = scale
 
 
-func _ready():
-	visible = not OS.get_name() in ["Android", "iOS"]
-
-
 func _on_just_pressed():
 	var tween = create_tween()
 	tween.tween_property(self, "scale", pressed_scale, anim_duration)

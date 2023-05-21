@@ -4,6 +4,7 @@
 resource_name = "SpectrumAnalyzer"
 
 [resource]
+bus/0/mute = true
 bus/0/volume_db = -21.0931
 bus/1/name = "Sounds"
 bus/1/solo = false
