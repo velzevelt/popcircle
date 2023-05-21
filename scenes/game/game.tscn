@@ -68,32 +68,32 @@ margin_bottom = 40.0
 mouse_filter = 2
 
 [node name="ScoreLabel" type="Label" parent="InfoL/VBoxContainer"]
-margin_right = 231.0
-margin_bottom = 60.0
+margin_right = 253.0
+margin_bottom = 56.0
 custom_fonts/font = ExtResource( 2 )
 text = "Score: "
 script = ExtResource( 3 )
 
 [node name="BubblesLabel" type="Label" parent="InfoL/VBoxContainer"]
-margin_top = 64.0
-margin_right = 231.0
-margin_bottom = 124.0
+margin_top = 60.0
+margin_right = 253.0
+margin_bottom = 116.0
 custom_fonts/font = ExtResource( 2 )
 text = "Bubbles:"
 script = ExtResource( 4 )
 
 [node name="MissedLabel" type="Label" parent="InfoL/VBoxContainer"]
-margin_top = 128.0
-margin_right = 231.0
-margin_bottom = 188.0
+margin_top = 120.0
+margin_right = 253.0
+margin_bottom = 176.0
 custom_fonts/font = ExtResource( 2 )
 text = "Missed:"
 script = ExtResource( 5 )
 
 [node name="SpawnRateLabel" type="Label" parent="InfoL/VBoxContainer"]
-margin_top = 192.0
-margin_right = 231.0
-margin_bottom = 252.0
+margin_top = 180.0
+margin_right = 253.0
+margin_bottom = 236.0
 custom_fonts/font = ExtResource( 2 )
 text = "Spawn Rate:"
 script = ExtResource( 7 )
@@ -159,7 +159,7 @@ anim_duration = 0.8
 [node name="Finish" parent="FinishL" instance=ExtResource( 10 )]
 
 [node name="Label" parent="FinishL/Finish/Panel" index="0"]
-text = "FINISH"
+text = "Finish"
 
 [node name="ExitL" type="CanvasLayer" parent="."]
 layer = 3

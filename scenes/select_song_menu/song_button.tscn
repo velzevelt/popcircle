@@ -28,7 +28,7 @@ script = ExtResource( 4 )
 
 [node name="SongButton" type="Button" parent="."]
 unique_name_in_owner = true
-margin_right = 278.0
+margin_right = 254.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 0, 150 )
 custom_fonts/font = ExtResource( 2 )

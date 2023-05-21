@@ -143,6 +143,11 @@ click={
 
 pointing/emulate_touch_from_mouse=true
 
+[locale]
+
+translation_remaps={
+}
+
 [physics]
 
 common/enable_pause_aware_picking=true

@@ -1,13 +1,13 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://fonts/GADAQUALI.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/ConsolaMono-Book.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://sprites/rect.svg" type="Texture" id=2]
 [ext_resource path="res://scenes/settings_menu/slider_value.gd" type="Script" id=3]
 [ext_resource path="res://style/slider_grabber.tres" type="Texture" id=4]
 [ext_resource path="res://style/slider_grabber_highlight.tres" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=4]
-size = 80
+size = 50
 font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxTexture" id=7]
@@ -27,19 +27,19 @@ margin_bottom = 34.0
 
 [node name="SettingName" type="Label" parent="."]
 margin_right = 1620.0
-margin_bottom = 80.0
+margin_bottom = 69.0
 custom_fonts/font = SubResource( 4 )
 text = "Music"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_top = 84.0
+margin_top = 73.0
 margin_right = 1620.0
-margin_bottom = 164.0
+margin_bottom = 142.0
 custom_constants/separation = 16
 
 [node name="HSlider" type="HSlider" parent="HBoxContainer"]
 margin_right = 1458.0
-margin_bottom = 80.0
+margin_bottom = 69.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_icons/grabber_highlight = ExtResource( 5 )
@@ -53,7 +53,7 @@ max_value = 0.0
 [node name="Value" type="Label" parent="HBoxContainer"]
 margin_left = 1474.0
 margin_right = 1620.0
-margin_bottom = 80.0
+margin_bottom = 69.0
 size_flags_horizontal = 3
 size_flags_vertical = 11
 size_flags_stretch_ratio = 0.1

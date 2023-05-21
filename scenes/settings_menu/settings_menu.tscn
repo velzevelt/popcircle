@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/settings_menu/slider.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/settings_menu/audio_slider_node.gd" type="Script" id=5]
 [ext_resource path="res://scenes/settings_menu/tab_switch.gd" type="Script" id=6]
-[ext_resource path="res://fonts/GADAQUALI.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://fonts/ConsolaMono-Book.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://sprites/play_button.svg" type="Texture" id=8]
 
 [sub_resource type="StyleBoxLine" id=2]
@@ -14,7 +14,7 @@ color = Color( 1, 1, 1, 1 )
 thickness = 5
 
 [sub_resource type="DynamicFont" id=3]
-size = 80
+size = 68
 font_data = ExtResource( 7 )
 
 [node name="Settings" type="Control"]
@@ -44,7 +44,7 @@ custom_constants/separation = 13
 
 [node name="Title" type="Label" parent="Header"]
 margin_right = 1920.0
-margin_bottom = 158.0
+margin_bottom = 151.0
 rect_pivot_offset = Vector2( -3089, 644 )
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -55,36 +55,36 @@ valign = 1
 
 [node name="Underline" type="Panel" parent="Header"]
 margin_left = 410.0
-margin_top = 171.0
+margin_top = 164.0
 margin_right = 1510.0
-margin_bottom = 171.0
+margin_bottom = 164.0
 rect_min_size = Vector2( 1100, 0 )
 size_flags_horizontal = 6
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 2 )
 
 [node name="Separator" type="Control" parent="Header"]
-margin_top = 184.0
+margin_top = 177.0
 margin_right = 1920.0
-margin_bottom = 186.0
+margin_bottom = 179.0
 rect_min_size = Vector2( 0, 2 )
 
 [node name="Tab" type="HBoxContainer" parent="Header"]
-margin_top = 199.0
+margin_top = 192.0
 margin_right = 1920.0
-margin_bottom = 279.0
+margin_bottom = 286.0
 custom_constants/separation = 24
 
 [node name="Separator" type="Control" parent="Header/Tab"]
-margin_right = 764.0
-margin_bottom = 80.0
+margin_right = 732.0
+margin_bottom = 94.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="PreviousTab" type="TextureButton" parent="Header/Tab"]
-margin_left = 788.0
-margin_right = 868.0
-margin_bottom = 80.0
+margin_left = 756.0
+margin_right = 836.0
+margin_bottom = 94.0
 rect_min_size = Vector2( 80, 80 )
 texture_normal = ExtResource( 8 )
 expand = true
@@ -94,9 +94,9 @@ flip_h = true
 script = ExtResource( 1 )
 
 [node name="SettingTab" type="Label" parent="Header/Tab"]
-margin_left = 892.0
-margin_right = 1027.0
-margin_bottom = 80.0
+margin_left = 860.0
+margin_right = 1060.0
+margin_bottom = 94.0
 rect_pivot_offset = Vector2( -3089, 644 )
 size_flags_vertical = 7
 custom_fonts/font = SubResource( 3 )
@@ -105,9 +105,9 @@ align = 1
 valign = 1
 
 [node name="NextTab" type="TextureButton" parent="Header/Tab"]
-margin_left = 1051.0
-margin_right = 1131.0
-margin_bottom = 80.0
+margin_left = 1084.0
+margin_right = 1164.0
+margin_bottom = 94.0
 rect_min_size = Vector2( 80, 0 )
 texture_normal = ExtResource( 8 )
 expand = true
@@ -116,55 +116,56 @@ expand = true
 script = ExtResource( 1 )
 
 [node name="Separator2" type="Control" parent="Header/Tab"]
-margin_left = 1155.0
+margin_left = 1188.0
 margin_right = 1920.0
-margin_bottom = 80.0
+margin_bottom = 94.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Content" type="MarginContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Content" type="MarginContainer" parent="Header"]
+margin_top = 299.0
+margin_right = 1920.0
+margin_bottom = 1079.0
 mouse_filter = 2
 custom_constants/margin_right = 150
-custom_constants/margin_top = 300
+custom_constants/margin_top = 100
 custom_constants/margin_left = 150
 custom_constants/margin_bottom = 150
 
-[node name="Sliders" type="VBoxContainer" parent="Content"]
+[node name="Sliders" type="VBoxContainer" parent="Header/Content"]
 margin_left = 150.0
-margin_top = 300.0
+margin_top = 100.0
 margin_right = 1770.0
-margin_bottom = 930.0
+margin_bottom = 630.0
 custom_constants/separation = 52
 
-[node name="MasterSlider" parent="Content/Sliders" instance=ExtResource( 4 )]
-margin_bottom = 164.0
+[node name="MasterSlider" parent="Header/Content/Sliders" instance=ExtResource( 4 )]
+margin_bottom = 142.0
 
-[node name="SettingName" parent="Content/Sliders/MasterSlider" index="0"]
+[node name="SettingName" parent="Header/Content/Sliders/MasterSlider" index="0"]
 text = "Master"
 
-[node name="Master" type="Node" parent="Content/Sliders/MasterSlider"]
+[node name="Master" type="Node" parent="Header/Content/Sliders/MasterSlider"]
 script = ExtResource( 5 )
 slider = NodePath("../HBoxContainer/HSlider")
 music_bus_name = "Master"
 
-[node name="MusicSlider" parent="Content/Sliders" instance=ExtResource( 4 )]
-margin_top = 216.0
-margin_bottom = 380.0
+[node name="MusicSlider" parent="Header/Content/Sliders" instance=ExtResource( 4 )]
+margin_top = 194.0
+margin_bottom = 336.0
 
-[node name="Music" type="Node" parent="Content/Sliders/MusicSlider"]
+[node name="Music" type="Node" parent="Header/Content/Sliders/MusicSlider"]
 script = ExtResource( 5 )
 slider = NodePath("../HBoxContainer/HSlider")
 
-[node name="SoundsSlider" parent="Content/Sliders" instance=ExtResource( 4 )]
-margin_top = 432.0
-margin_bottom = 596.0
+[node name="SoundsSlider" parent="Header/Content/Sliders" instance=ExtResource( 4 )]
+margin_top = 388.0
+margin_bottom = 530.0
 
-[node name="SettingName" parent="Content/Sliders/SoundsSlider" index="0"]
+[node name="SettingName" parent="Header/Content/Sliders/SoundsSlider" index="0"]
 text = "Sounds"
 
-[node name="Sounds" type="Node" parent="Content/Sliders/SoundsSlider"]
+[node name="Sounds" type="Node" parent="Header/Content/Sliders/SoundsSlider"]
 script = ExtResource( 5 )
 slider = NodePath("../HBoxContainer/HSlider")
 music_bus_name = "Sounds"
@@ -172,6 +173,6 @@ music_bus_name = "Sounds"
 [node name="TabSwitch" type="Node" parent="."]
 script = ExtResource( 6 )
 
-[editable path="Content/Sliders/MasterSlider"]
-[editable path="Content/Sliders/MusicSlider"]
-[editable path="Content/Sliders/SoundsSlider"]
+[editable path="Header/Content/Sliders/MasterSlider"]
+[editable path="Header/Content/Sliders/MusicSlider"]
+[editable path="Header/Content/Sliders/SoundsSlider"]
