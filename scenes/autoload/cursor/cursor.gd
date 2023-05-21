@@ -21,20 +21,16 @@ func set_current_frame(value: int):
 
 func _create_frames() -> Array:
 	var result = []
-	var frames = 50
-	var skipped_frames = 20
+	var frames = 20
+	var skipped_frames = 10
 	var step = cursor_texture.get_size() / frames
 	
 	for i in range(1 + skipped_frames, frames + 1):
 		var image = cursor_texture.get_data()
 		image.resize(step.x * i, step.y * i, Image.INTERPOLATE_LANCZOS)
 		
-		#var init_size = cursor_texture.get_size()
-		#image.resize(init_size.x, init_size.y)
-		
 		var texture = ImageTexture.new()
 		texture.create_from_image(image)
-		
 		result.append(texture)
 	
 	return result
@@ -42,16 +38,15 @@ func _create_frames() -> Array:
 
 func _ready():
 	_set_cursor_frame()
-	connect("just_pressed", self, "_on_just_pressed")
-	connect("just_released", self, "_on_just_released")
+	#connect("just_pressed", self, "_on_just_pressed")
+	#connect("just_released", self, "_on_just_released")
 
 
 func _set_cursor_frame(frame: int = self._current_frame) -> void:
 	Input.set_custom_mouse_cursor(_size_frames[frame], Input.CURSOR_ARROW, _size_frames[frame].get_size() / 2)
 
 
-func _process(delta):
-	_set_cursor_frame()
+
 
 
 func _input(event):
@@ -62,13 +57,17 @@ func _input(event):
 		emit_signal("just_released")
 	
 
+#func _process(delta):
+#	_set_cursor_frame()
 
 func _on_just_pressed():
-	var tween = create_tween()
-	tween.set_ease(Tween.EASE_IN)
-	tween.tween_method(self, "set_current_frame", self._current_frame, _size_frames.size() - 1, anim_duration)
+	pass
+#	var tween = create_tween()
+#	tween.set_ease(Tween.EASE_IN)
+#	tween.tween_method(self, "set_current_frame", self._current_frame, _size_frames.size() - 1, anim_duration)
 
 func _on_just_released():
-	var tween = create_tween()
-	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_method(self, "set_current_frame", self._current_frame, 0, anim_duration)
+	pass
+#	var tween = create_tween()
+#	tween.set_ease(Tween.EASE_OUT)
+#	tween.tween_method(self, "set_current_frame", self._current_frame, 0, anim_duration)
