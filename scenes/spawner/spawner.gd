@@ -33,7 +33,8 @@ func get_spawn_per_tick() -> int:
 onready var spawn_timer = $SpawnTimer as Timer
 
 var spawn_time := 1.0
-var spawned_count = 0
+var spawned_count := 0
+
 var enabled := true
 
 func _ready():

@@ -9,6 +9,8 @@ export var min_accurancy = 51
 
 var accurancy: float = 100.0
 
+var completed_count := 0
+var missed_count := 0
 
 var failed = 0
 
@@ -39,6 +41,8 @@ func calculate_true_accurancy(missed: int, score: int) -> float:
 
 
 func _on_Spawner_task_completed():
+	completed_count += 1
+	
 	failed -= 1
 	if failed < 0:
 		failed = 0
@@ -47,5 +51,7 @@ func _on_Spawner_task_completed():
 
 
 func _on_Spawner_task_failed():
+	missed_count += 1
+	
 	failed += 1
 	update_accurancy()

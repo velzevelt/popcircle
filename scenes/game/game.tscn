@@ -193,7 +193,6 @@ script = ExtResource( 13 )
 [connection signal="task_failed" from="Spawner" to="InfoL/VBoxContainer/MissedLabel" method="_on_Spawner_task_failed"]
 [connection signal="accurancy_too_small" from="CalculateAccurancy" to="GameOverL" method="_on_CalculateAccurancy_accurancy_too_small"]
 [connection signal="accurancy_too_small" from="CalculateAccurancy" to="GameOverL/GameOver" method="_on_CalculateAccurancy_accurancy_too_small"]
-[connection signal="accurancy_too_small" from="CalculateAccurancy" to="ExitL/ExitButton" method="_on_CalculateAccurancy_accurancy_too_small"]
 [connection signal="accurancy_updated" from="CalculateAccurancy" to="InfoL/VBoxContainer/AccurancyLabel" method="_on_CalculateAccurancy_accurancy_updated"]
 [connection signal="accurancy_updated" from="CalculateAccurancy" to="InfoL/AccurancyPanel/MarginContainer/AccurancyBar" method="_on_CalculateAccurancy_accurancy_updated"]
 

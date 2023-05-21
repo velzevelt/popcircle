@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/main_menu/button_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/game/replay_button.gd" type="Script" id=2]
@@ -8,9 +8,14 @@
 [ext_resource path="res://scenes/game/back_button.gd" type="Script" id=6]
 [ext_resource path="res://scenes/main_menu/button_pressed.tres" type="StyleBox" id=7]
 [ext_resource path="res://scenes/main_menu/game_over.tres" type="StyleBox" id=8]
+[ext_resource path="res://fonts/GADAQUALI.ttf" type="DynamicFontData" id=9]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.137255, 0.137255, 0.137255, 0.215686 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 160
+font_data = ExtResource( 9 )
 
 [node name="GameOver" type="Panel"]
 pause_mode = 2
@@ -39,7 +44,7 @@ margin_right = 289.0
 margin_bottom = 144.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "GAME OVER"
 align = 1
 uppercase = true
