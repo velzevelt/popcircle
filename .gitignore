@@ -15,5 +15,5 @@ data_*/
 mono_crash.*.json
 
 # Project-specific ignores
-etc/private
+private/
 *.csv#
