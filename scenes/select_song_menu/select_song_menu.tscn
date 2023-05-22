@@ -104,19 +104,30 @@ size_flags_vertical = 3
 custom_constants/margin_right = 40
 custom_constants/margin_top = 40
 custom_constants/margin_left = 40
-custom_constants/margin_bottom = 40
+custom_constants/margin_bottom = 200
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/Content"]
 margin_left = 40.0
 margin_top = 40.0
 margin_right = 1880.0
-margin_bottom = 885.0
-rect_clip_content = false
+margin_bottom = 725.0
 
-[node name="Songs" type="HFlowContainer" parent="PanelContainer/VBoxContainer/Content/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Content/ScrollContainer"]
+margin_right = 1828.0
+margin_bottom = 1180.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 40
+custom_constants/margin_top = 40
+custom_constants/margin_left = 40
+custom_constants/margin_bottom = 40
+
+[node name="Songs" type="HFlowContainer" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer"]
 unique_name_in_owner = true
-margin_right = 1840.0
-margin_bottom = 845.0
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 1788.0
+margin_bottom = 1140.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/vseparation = 40
@@ -124,9 +135,186 @@ custom_constants/hseparation = 20
 script = ExtResource( 3 )
 song_button_scene = ExtResource( 2 )
 
-[node name="SongButton" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/Songs" instance=ExtResource( 2 )]
+[node name="SongButton" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
 margin_right = 254.0
 margin_bottom = 150.0
+
+[node name="SongButton2" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 274.0
+margin_right = 528.0
+margin_bottom = 150.0
+
+[node name="SongButton3" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 548.0
+margin_right = 802.0
+margin_bottom = 150.0
+
+[node name="SongButton4" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 822.0
+margin_right = 1076.0
+margin_bottom = 150.0
+
+[node name="SongButton5" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 1096.0
+margin_right = 1350.0
+margin_bottom = 150.0
+
+[node name="SongButton6" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 1370.0
+margin_right = 1624.0
+margin_bottom = 150.0
+
+[node name="SongButton7" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_top = 190.0
+margin_right = 254.0
+margin_bottom = 340.0
+
+[node name="SongButton8" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 274.0
+margin_top = 190.0
+margin_right = 528.0
+margin_bottom = 340.0
+
+[node name="SongButton9" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 548.0
+margin_top = 190.0
+margin_right = 802.0
+margin_bottom = 340.0
+
+[node name="SongButton10" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 822.0
+margin_top = 190.0
+margin_right = 1076.0
+margin_bottom = 340.0
+
+[node name="SongButton11" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 1096.0
+margin_top = 190.0
+margin_right = 1350.0
+margin_bottom = 340.0
+
+[node name="SongButton12" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 1370.0
+margin_top = 190.0
+margin_right = 1624.0
+margin_bottom = 340.0
+
+[node name="SongButton13" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_top = 380.0
+margin_right = 254.0
+margin_bottom = 530.0
+
+[node name="SongButton14" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 274.0
+margin_top = 380.0
+margin_right = 528.0
+margin_bottom = 530.0
+
+[node name="SongButton15" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 548.0
+margin_top = 380.0
+margin_right = 802.0
+margin_bottom = 530.0
+
+[node name="SongButton16" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 822.0
+margin_top = 380.0
+margin_right = 1076.0
+margin_bottom = 530.0
+
+[node name="SongButton17" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 1096.0
+margin_top = 380.0
+margin_right = 1350.0
+margin_bottom = 530.0
+
+[node name="SongButton18" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 1370.0
+margin_top = 380.0
+margin_right = 1624.0
+margin_bottom = 530.0
+
+[node name="SongButton19" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_top = 570.0
+margin_right = 254.0
+margin_bottom = 720.0
+
+[node name="SongButton20" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 274.0
+margin_top = 570.0
+margin_right = 528.0
+margin_bottom = 720.0
+
+[node name="SongButton21" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 548.0
+margin_top = 570.0
+margin_right = 802.0
+margin_bottom = 720.0
+
+[node name="SongButton22" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 822.0
+margin_top = 570.0
+margin_right = 1076.0
+margin_bottom = 720.0
+
+[node name="SongButton23" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 1096.0
+margin_top = 570.0
+margin_right = 1350.0
+margin_bottom = 720.0
+
+[node name="SongButton24" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 1370.0
+margin_top = 570.0
+margin_right = 1624.0
+margin_bottom = 720.0
+
+[node name="SongButton25" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_top = 760.0
+margin_right = 254.0
+margin_bottom = 910.0
+
+[node name="SongButton26" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 274.0
+margin_top = 760.0
+margin_right = 528.0
+margin_bottom = 910.0
+
+[node name="SongButton27" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 548.0
+margin_top = 760.0
+margin_right = 802.0
+margin_bottom = 910.0
+
+[node name="SongButton28" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 822.0
+margin_top = 760.0
+margin_right = 1076.0
+margin_bottom = 910.0
+
+[node name="SongButton29" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 1096.0
+margin_top = 760.0
+margin_right = 1350.0
+margin_bottom = 910.0
+
+[node name="SongButton30" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_left = 1370.0
+margin_top = 760.0
+margin_right = 1624.0
+margin_bottom = 910.0
+
+[node name="SongButton31" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" instance=ExtResource( 2 )]
+margin_top = 950.0
+margin_right = 254.0
+margin_bottom = 1100.0
+
+[node name="Separator" type="Control" parent="PanelContainer/VBoxContainer"]
+visible = false
+margin_top = 900.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 0, 180 )
 
 [node name="Close" type="HBoxContainer" parent="."]
 anchor_left = 1.0
@@ -231,7 +419,7 @@ expand = true
 [node name="SearchButtonNode" type="Node" parent="Search"]
 script = ExtResource( 11 )
 
-[connection signal="text_changed" from="PanelContainer/VBoxContainer/HBoxContainer/Title" to="PanelContainer/VBoxContainer/Content/ScrollContainer/Songs" method="_on_search_input_text_changed"]
-[connection signal="double_clicked" from="PanelContainer/VBoxContainer/Content/ScrollContainer/Songs" to="PlayButton/PlayButton" method="_on_Songs_double_clicked"]
-[connection signal="song_selected" from="PanelContainer/VBoxContainer/Content/ScrollContainer/Songs" to="PlayButton/PlayButton" method="_on_Songs_song_selected"]
+[connection signal="text_changed" from="PanelContainer/VBoxContainer/HBoxContainer/Title" to="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" method="_on_search_input_text_changed"]
+[connection signal="double_clicked" from="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" to="PlayButton/PlayButton" method="_on_Songs_double_clicked"]
+[connection signal="song_selected" from="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" to="PlayButton/PlayButton" method="_on_Songs_song_selected"]
 [connection signal="pressed" from="PlayButton" to="PlayButton/PlayButton" method="_on_PlayButton_pressed"]

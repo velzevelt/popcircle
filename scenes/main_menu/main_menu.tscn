@@ -128,12 +128,6 @@ script = ExtResource( 11 )
 
 [node name="AboutControl" parent="AboutL" instance=ExtResource( 13 )]
 
-[node name="Label" parent="AboutL/AboutControl/Header" index="0"]
-margin_bottom = 151.0
-
-[node name="Underline" parent="AboutL/AboutControl/Header" index="1"]
-margin_top = 164.0
-
 [node name="About" type="Node" parent="AboutL"]
 script = ExtResource( 12 )
 
