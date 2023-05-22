@@ -159,7 +159,8 @@ anim_duration = 0.8
 [node name="Finish" parent="FinishL" instance=ExtResource( 10 )]
 
 [node name="Label" parent="FinishL/Finish/Panel" index="0"]
-text = "Finish"
+custom_colors/font_color = Color( 0.537255, 1, 0.443137, 1 )
+text = "Completed"
 
 [node name="ExitL" type="CanvasLayer" parent="."]
 layer = 3

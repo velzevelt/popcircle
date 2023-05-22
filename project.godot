@@ -145,8 +145,7 @@ pointing/emulate_touch_from_mouse=true
 
 [locale]
 
-translation_remaps={
-}
+translations=PoolStringArray( "res://localization/localization.en.translation", "res://localization/localization.ru.translation" )
 
 [physics]
 

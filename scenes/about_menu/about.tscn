@@ -35,17 +35,17 @@ custom_constants/separation = 13
 
 [node name="Label" type="Label" parent="Header"]
 margin_right = 1920.0
-margin_bottom = 158.0
+margin_bottom = 151.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/font = ExtResource( 3 )
-text = "About"
+text = "Project"
 align = 1
 valign = 1
 
 [node name="Underline" type="Panel" parent="Header"]
 margin_left = 410.0
-margin_top = 171.0
+margin_top = 164.0
 margin_right = 1510.0
 margin_bottom = 179.0
 rect_min_size = Vector2( 1100, 0 )
