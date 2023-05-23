@@ -1,8 +1,8 @@
 extends Node
 
 signal download_started
-signal download_done(path)
 signal download_error_occurred
+signal download_done(path)
 
 var http_request: HTTPRequest
 var _file_token_info: Dictionary

@@ -3,7 +3,7 @@ extends Node
 var thread: Thread
 
 func _input(event):
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("space"):
 		if thread == null:
 			thread = Thread.new()
 			thread.start(self, "_foo")

@@ -1,0 +1,108 @@
+https://www.youtube.com/watch?v=y4q3Us4-uM8
+
+
+1) recover_file.php
+
+REQUEST HEADERS
+
+    POST /recover_file.php?lang=ru HTTP/1.1
+    Host: s61.notube.net
+    User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/113.0
+    Accept: text/html, */*; q=0.01
+    Accept-Language: ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3
+    Accept-Encoding: gzip, deflate, br
+    Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+    Content-Length: 142
+    Origin: https://notube.net
+    Connection: keep-alive
+    Referer: https://notube.net/
+    Sec-Fetch-Dest: empty
+    Sec-Fetch-Mode: cors
+    Sec-Fetch-Site: same-site
+
+    POST https://s61.notube.net/recover_weight.php
+    POST BODY url=https://www.youtube.com/watch?v=y4q3Us4-uM8&format=mp3&lang=ru
+    RESPONSE {"url_mp4_youtube":"", "weight_total":"", "name_mp4":"Nightcore_-_JOLT_Lyrics.mp4","titre_mp4":"Nightcore+-+JOLT+%28Lyrics%29","token":"ad81f14d11788f02ffcfbb99d3cc8982", "VevoUSA":"0", "VideoDuration":"0"}
+
+2)  conversion.php
+
+REQUEST HEADERS
+    POST /conversion.php HTTP/1.1
+    Host: s61.notube.net
+    User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/113.0
+    Accept: text/html, */*; q=0.01
+    Accept-Language: ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3
+    Accept-Encoding: gzip, deflate, br
+    Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+    Content-Length: 38
+    Origin: https://notube.net
+    Connection: keep-alive
+    Referer: https://notube.net/
+    Sec-Fetch-Dest: empty
+    Sec-Fetch-Mode: cors
+    Sec-Fetch-Site: same-site
+    
+    POST https://s61.notube.net/conversion.php
+    POST BODY token=ad81f14d11788f02ffcfbb99d3cc8982
+    RESPONSE 
+
+X) weight.php -> SKIP
+
+REQUEST HEADERS
+    GET /weight.php?name_mp4=Nightcore_-_JOLT_Lyrics.mp4 HTTP/1.1
+    Host: s61.notube.net
+    User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/113.0
+    Accept: text/html, */*; q=0.01
+    Accept-Language: ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3
+    Accept-Encoding: gzip, deflate, br
+    Origin: https://notube.net
+    Connection: keep-alive
+    Referer: https://notube.net/
+    Sec-Fetch-Dest: empty
+    Sec-Fetch-Mode: cors
+    Sec-Fetch-Site: same-site
+    
+    GET https://s61.notube.net/weight.php?name_mp4=Nightcore_-_JOLT_Lyrics.mp4
+    RESPONSE
+
+X) download -> SKIP
+
+REQUEST HEADERS
+    GET /ru/download?token=ad81f14d11788f02ffcfbb99d3cc8982 HTTP/2
+    Host: notube.net
+    User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/113.0
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+    Accept-Language: ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3
+    Accept-Encoding: gzip, deflate, br
+    Connection: keep-alive
+    Referer: https://notube.net/ru/youtube-app-v51?link=expired2
+    Cookie: __sharethis_cookie_test__=1; __unam=6cb5566-18845b7e3cf-668f8b95-12; PHPSESSID=ifnsohh50b5j2t8moqrj3dpmpp
+    Upgrade-Insecure-Requests: 1
+    Sec-Fetch-Dest: document
+    Sec-Fetch-Mode: navigate
+    Sec-Fetch-Site: same-origin
+    Sec-Fetch-User: ?1
+    
+    GET https://notube.net/ru/download?token=ad81f14d11788f02ffcfbb99d3cc8982
+    RESPONSE 
+
+3) download.php
+
+REQUEST HEADERS
+    GET /download.php?token=ad81f14d11788f02ffcfbb99d3cc8982 HTTP/1.1
+    Host: s61.notube.net
+    User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/113.0
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+    Accept-Language: ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3
+    Accept-Encoding: gzip, deflate, br
+    Connection: keep-alive
+    Referer: https://notube.net/
+    Cookie: __unam=6cb5566-18845b7e3cf-668f8b95-13
+    Upgrade-Insecure-Requests: 1
+    Sec-Fetch-Dest: document
+    Sec-Fetch-Mode: navigate
+    Sec-Fetch-Site: same-site
+    Sec-Fetch-User: ?1
+    
+    GET https://s61.notube.net/download.php?token=ad81f14d11788f02ffcfbb99d3cc8982
+    RESPONSE -> FILE

@@ -67,47 +67,19 @@ static func load_songs(path: String, extension: String = "mp3") -> Array:
 					if not OS.has_feature('editor') and file_name.ends_with('.import'):
 						file_path = file_path.trim_suffix('.import')
 					
-					if ResourceLoader.exists(file_path):
-						var data = ResourceLoader.load(file_path)
-						
-						var song = SongData.new()
-						song.path = file_path
-						song.name = file_name.trim_suffix(extension)
-						song.stream = data
-						result.append(song)
-					else:
-						push_warning("%s external file" % file_path)
-						
-						var stream = null
-						if file_path.ends_with("mp3"):
-							stream = AudioStreamMP3.new()
-						elif file_path.ends_with("ogg"):
-							stream = AudioStreamOGGVorbis.new()
-						elif file_path.ends_with("wav"):
-							stream = AudioStreamSample.new()
-						else:
-							push_error("%s extension does not recognised or not supported" % extension)
-							continue
-						
-						var file = File.new()
-						if file.open(file_path, File.READ) != OK:
-							push_error("Cannot open file %s" % file_path)
-							continue
-						
-						stream.data = file.get_buffer(file.get_len())
-						file.close()
-						
-						var song = SongData.new()
-						song.path = file_path
-						song.name = file_name.trim_suffix(extension)
-						song.stream = stream
-						result.append(song)
+					var song = SongData.new()
+					song.path = file_path
+					song.name = file_name.trim_suffix(extension)
+					song.extension = extension
+					song.load_stream()
+					
+					print(song.stream)
+					
+					result.append(song)
 			
 			file_name = dir.get_next()
 	else:
 		push_error("Can't open songs at " + path)
 	
 	return result
-
-
 

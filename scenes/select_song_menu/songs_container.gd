@@ -41,11 +41,13 @@ func _on_double_clicked():
 
 
 func _on_search_input_text_changed(new_text):
-	var text = search_input.text.to_lower()
-	if text == "":
+	if new_text == "":
 		for c in get_children():
 			c.visible = true
 		return
-	
+
+
+func _on_Title_text_entered(new_text):
+	var text = search_input.text.to_lower()
 	for c in get_children():
 		c.visible = text in c.song_data.name.to_lower()

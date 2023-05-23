@@ -420,6 +420,7 @@ expand = true
 script = ExtResource( 11 )
 
 [connection signal="text_changed" from="PanelContainer/VBoxContainer/HBoxContainer/Title" to="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" method="_on_search_input_text_changed"]
+[connection signal="text_entered" from="PanelContainer/VBoxContainer/HBoxContainer/Title" to="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" method="_on_Title_text_entered"]
 [connection signal="double_clicked" from="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" to="PlayButton/PlayButton" method="_on_Songs_double_clicked"]
 [connection signal="song_selected" from="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" to="PlayButton/PlayButton" method="_on_Songs_song_selected"]
 [connection signal="pressed" from="PlayButton" to="PlayButton/PlayButton" method="_on_PlayButton_pressed"]
