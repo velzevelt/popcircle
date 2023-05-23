@@ -73,7 +73,6 @@ static func load_songs(path: String, extension: String = "mp3") -> Array:
 					song.extension = extension
 					song.load_stream()
 					
-					print(song.stream)
 					
 					result.append(song)
 			

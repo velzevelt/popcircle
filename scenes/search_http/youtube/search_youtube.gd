@@ -1,5 +1,7 @@
 extends Node
 
+signal search_started
+signal search_failed
 signal songs_updated(new_songs)
 
 const API_KEY_PATH = "res://private/youtube_api_key.txt"
@@ -47,6 +49,8 @@ func get_api_key() -> String:
 
 
 func search(song_name: String) -> void:
+	emit_signal('search_started')
+	
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	http_request.use_threads = true
@@ -55,6 +59,7 @@ func search(song_name: String) -> void:
 	
 	if err != OK:
 		push_warning("Request Error")
+		emit_signal('search_failed')
 	
 	# Cleanup
 	yield(http_request, "request_completed")
@@ -64,6 +69,7 @@ func search(song_name: String) -> void:
 func _on_search_request_completed(result: int, response_code: int, headers: PoolStringArray, body: PoolByteArray):
 	if result != HTTPRequest.RESULT_SUCCESS:
 		push_warning("Http error: result {0}, response_code {1}".format([result, response_code]))
+		emit_signal('search_failed')
 		return
 	
 	var data = body.get_string_from_utf8()
@@ -73,6 +79,7 @@ func _on_search_request_completed(result: int, response_code: int, headers: Pool
 		self.search_data = parsed.result
 	else:
 		push_warning("JSON parse error")
+		emit_signal('search_failed')
 	
 
 
@@ -97,8 +104,12 @@ func get_video_url(video_id: String) -> String:
 	return url
 
 
-class Song:
+class Song extends Resource:
 	var video_id: String
 	var url: String
 	var title: String
+	var name: String setget , get_name
+	
+	func get_name():
+		return self.title
 	

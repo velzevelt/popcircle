@@ -5,11 +5,6 @@ signal double_clicked
 
 export var song_button_scene: PackedScene
 onready var songs_container = $"%Songs"
-onready var search_input = $"%Title"
-
-
-func _ready():
-	call_deferred("update_songs", SongLoader._songs)
 
 
 func update_songs(new_songs: Array):
@@ -18,7 +13,9 @@ func update_songs(new_songs: Array):
 	
 	for song in new_songs:
 		var instance = song_button_scene.instance()
+		
 		instance.song_data = song
+		
 		instance.connect("song_selected", self, "_on_song_selected")
 		instance.connect("double_clicked", self, "_on_double_clicked")
 		
@@ -47,7 +44,7 @@ func _on_search_input_text_changed(new_text):
 		return
 
 
-func _on_Title_text_entered(new_text):
-	var text = search_input.text.to_lower()
-	for c in get_children():
-		c.visible = text in c.song_data.name.to_lower()
+#func _on_Title_text_entered(new_text):
+#	var text = search_input.text.to_lower()
+#	for c in get_children():
+#		c.visible = text in c.song_data.name.to_lower()

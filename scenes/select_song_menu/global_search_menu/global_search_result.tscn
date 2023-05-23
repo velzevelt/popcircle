@@ -1,10 +1,16 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/button_color_tint/press_color_tint.gd" type="Script" id=1]
 [ext_resource path="res://scenes/main_menu/default_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://sprites/close_button.svg" type="Texture" id=3]
 [ext_resource path="res://scenes/select_song_menu/song_button.tscn" type="PackedScene" id=4]
 [ext_resource path="res://sprites/download_icon.svg" type="Texture" id=5]
+[ext_resource path="res://scenes/loading_icon/loading_icon.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/select_song_menu/songs_container.gd" type="Script" id=7]
+[ext_resource path="res://scenes/select_song_menu/global_search_menu/search_bridge.gd" type="Script" id=8]
+[ext_resource path="res://scenes/select_song_menu/global_search_menu/menu_state.gd" type="Script" id=9]
+[ext_resource path="res://scenes/select_song_menu/global_search_menu/close_menu.gd" type="Script" id=10]
+[ext_resource path="res://scenes/select_song_menu/global_search_menu/loading_icon_node.gd" type="Script" id=11]
 
 [sub_resource type="StyleBoxLine" id=2]
 color = Color( 1, 1, 1, 1 )
@@ -88,27 +94,25 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 10.0
 custom_constants/margin_right = 150
-custom_constants/margin_top = 100
+custom_constants/margin_top = 0
 custom_constants/margin_left = 150
-custom_constants/margin_bottom = 150
+custom_constants/margin_bottom = 200
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Header/Content"]
 margin_left = 150.0
-margin_top = 100.0
 margin_right = 1770.0
-margin_bottom = 658.0
+margin_bottom = 608.0
 
-[node name="HFlowContainer" type="HFlowContainer" parent="Header/Content/ScrollContainer"]
+[node name="Songs" type="HFlowContainer" parent="Header/Content/ScrollContainer"]
+unique_name_in_owner = true
 margin_right = 1620.0
-margin_bottom = 558.0
+margin_bottom = 608.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/vseparation = 40
 custom_constants/hseparation = 20
-
-[node name="SongContainer" parent="Header/Content/ScrollContainer/HFlowContainer" instance=ExtResource( 4 )]
-margin_right = 254.0
-margin_bottom = 150.0
+script = ExtResource( 7 )
+song_button_scene = ExtResource( 4 )
 
 [node name="DownloadButton" type="Button" parent="."]
 anchor_left = 0.5
@@ -135,3 +139,29 @@ margin_right = 50.0
 margin_bottom = 50.0
 texture = ExtResource( 5 )
 expand = true
+
+[node name="LoadingIcon" parent="." instance=ExtResource( 6 )]
+unique_name_in_owner = true
+margin_left = 18.0
+margin_top = 16.0
+margin_right = 82.0
+margin_bottom = 80.0
+
+[node name="LoadingIconNode" type="Node" parent="LoadingIcon"]
+script = ExtResource( 11 )
+
+[node name="SearchBridge" type="Node" parent="."]
+script = ExtResource( 8 )
+target = NodePath("../Header/Content/ScrollContainer/Songs")
+root = NodePath("..")
+
+[node name="MenuState" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 9 )
+
+[node name="CloseMenu" type="Node" parent="."]
+script = ExtResource( 10 )
+root = NodePath("..")
+
+[connection signal="pressed" from="CloseMenuButton" to="CloseMenu" method="_on_CloseMenuButton_pressed"]
+[connection signal="menu_state_changed" from="MenuState" to="LoadingIcon/LoadingIconNode" method="_on_MenuState_menu_state_changed"]

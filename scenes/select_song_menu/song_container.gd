@@ -12,8 +12,6 @@ func get_song_data():
 	return song_data
 
 func set_song_data(value: Resource):
-	assert(value is SongData, "Expected SongData")
-	
 	song_data = value
 	emit_signal("song_data_changed", song_data)
 

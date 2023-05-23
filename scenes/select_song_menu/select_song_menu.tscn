@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://scenes/main_menu/default_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/select_song_menu/song_button.tscn" type="PackedScene" id=2]
@@ -12,9 +12,10 @@
 [ext_resource path="res://sprites/search_icon.svg" type="Texture" id=10]
 [ext_resource path="res://scenes/select_song_menu/search_button_node.gd" type="Script" id=11]
 [ext_resource path="res://scenes/search_http/youtube/search_youtube.gd" type="Script" id=12]
-[ext_resource path="res://scenes/search_http/youtube/download_youtube.gd" type="Script" id=13]
 [ext_resource path="res://scenes/select_song_menu/search_popup.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scenes/select_song_menu/global_search_result.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/select_song_menu/global_search_menu/global_search_result.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/select_song_menu/update_songs_at_ready.gd" type="Script" id=16]
+[ext_resource path="res://scenes/select_song_menu/global_search.gd" type="Script" id=17]
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0, 0, 0, 0.713726 )
@@ -304,6 +305,10 @@ margin_top = 950.0
 margin_right = 254.0
 margin_bottom = 1100.0
 
+[node name="UpdateSongsAtReady" type="Node" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer"]
+script = ExtResource( 16 )
+target = NodePath("../Songs")
+
 [node name="Separator" type="Control" parent="PanelContainer/VBoxContainer"]
 visible = false
 margin_top = 900.0
@@ -413,16 +418,17 @@ expand = true
 
 [node name="SearchButtonNode" type="Node" parent="Search"]
 script = ExtResource( 11 )
-
-[node name="SearchInternet" type="Node" parent="Search"]
-unique_name_in_owner = true
-script = ExtResource( 12 )
-
-[node name="Download" type="Node" parent="Search"]
-unique_name_in_owner = true
-script = ExtResource( 13 )
+popup = NodePath("../../SearchPopup")
 
 [node name="SearchPopup" parent="." instance=ExtResource( 14 )]
+
+[node name="GlobalSearch" type="Node" parent="SearchPopup/MarginContainer/VBoxContainer/GlobalSearch" index="2"]
+script = ExtResource( 17 )
+root = NodePath("../../../..")
+request = NodePath("../../../../SearchYoutube")
+
+[node name="SearchYoutube" type="Node" parent="SearchPopup"]
+script = ExtResource( 12 )
 
 [node name="GlobalSearchResult" parent="." instance=ExtResource( 15 )]
 visible = false
@@ -430,3 +436,11 @@ visible = false
 [connection signal="double_clicked" from="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" to="PlayButton/PlayButton" method="_on_Songs_double_clicked"]
 [connection signal="song_selected" from="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" to="PlayButton/PlayButton" method="_on_Songs_song_selected"]
 [connection signal="pressed" from="PlayButton" to="PlayButton/PlayButton" method="_on_PlayButton_pressed"]
+[connection signal="text_entered" from="SearchPopup/MarginContainer/VBoxContainer/GlobalSearch" to="SearchPopup/MarginContainer/VBoxContainer/GlobalSearch/GlobalSearch" method="_on_GlobalSearch_text_entered"]
+[connection signal="search_failed" from="SearchPopup/SearchYoutube" to="GlobalSearchResult/SearchBridge" method="_on_SearchYoutube_search_failed"]
+[connection signal="search_started" from="SearchPopup/SearchYoutube" to="GlobalSearchResult/SearchBridge" method="_on_SearchYoutube_search_started"]
+[connection signal="songs_updated" from="SearchPopup/SearchYoutube" to="GlobalSearchResult/SearchBridge" method="_on_SearchYoutube_songs_updated"]
+
+[editable path="SearchPopup"]
+[editable path="SearchPopup/MarginContainer/VBoxContainer/GlobalSearch"]
+[editable path="GlobalSearchResult"]

@@ -3,7 +3,6 @@
 [ext_resource path="res://scenes/select_song_menu/search_form.tscn" type="PackedScene" id=1]
 
 [node name="SearchPopup" type="WindowDialog"]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
