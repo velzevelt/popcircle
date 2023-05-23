@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://scenes/main_menu/default_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/select_song_menu/song_button.tscn" type="PackedScene" id=2]
@@ -11,13 +11,13 @@
 [ext_resource path="res://sprites/directory_icon.svg" type="Texture" id=9]
 [ext_resource path="res://sprites/search_icon.svg" type="Texture" id=10]
 [ext_resource path="res://scenes/select_song_menu/search_button_node.gd" type="Script" id=11]
+[ext_resource path="res://scenes/search_http/youtube/search_youtube.gd" type="Script" id=12]
+[ext_resource path="res://scenes/search_http/youtube/download_youtube.gd" type="Script" id=13]
+[ext_resource path="res://scenes/select_song_menu/search_popup.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/select_song_menu/global_search_result.tscn" type="PackedScene" id=15]
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0, 0, 0, 0.713726 )
-
-[sub_resource type="StyleBoxEmpty" id=15]
-
-[sub_resource type="StyleBoxEmpty" id=16]
 
 [sub_resource type="StyleBoxEmpty" id=17]
 
@@ -79,21 +79,16 @@ margin_bottom = 1080.0
 margin_right = 1920.0
 margin_bottom = 151.0
 
-[node name="Title" type="LineEdit" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 margin_right = 1920.0
 margin_bottom = 151.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 custom_fonts/font = ExtResource( 1 )
-custom_styles/read_only = SubResource( 15 )
-custom_styles/focus = SubResource( 16 )
 custom_styles/normal = SubResource( 17 )
+text = "Select Song"
 align = 1
-editable = false
-placeholder_text = "Select Song"
-placeholder_alpha = 1.0
-caret_blink = true
 
 [node name="Content" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
 margin_top = 155.0
@@ -419,8 +414,19 @@ expand = true
 [node name="SearchButtonNode" type="Node" parent="Search"]
 script = ExtResource( 11 )
 
-[connection signal="text_changed" from="PanelContainer/VBoxContainer/HBoxContainer/Title" to="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" method="_on_search_input_text_changed"]
-[connection signal="text_entered" from="PanelContainer/VBoxContainer/HBoxContainer/Title" to="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" method="_on_Title_text_entered"]
+[node name="SearchInternet" type="Node" parent="Search"]
+unique_name_in_owner = true
+script = ExtResource( 12 )
+
+[node name="Download" type="Node" parent="Search"]
+unique_name_in_owner = true
+script = ExtResource( 13 )
+
+[node name="SearchPopup" parent="." instance=ExtResource( 14 )]
+
+[node name="GlobalSearchResult" parent="." instance=ExtResource( 15 )]
+visible = false
+
 [connection signal="double_clicked" from="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" to="PlayButton/PlayButton" method="_on_Songs_double_clicked"]
 [connection signal="song_selected" from="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" to="PlayButton/PlayButton" method="_on_Songs_song_selected"]
 [connection signal="pressed" from="PlayButton" to="PlayButton/PlayButton" method="_on_PlayButton_pressed"]

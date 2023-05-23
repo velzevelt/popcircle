@@ -137,6 +137,7 @@ margin_top = 299.0
 margin_right = 1920.0
 margin_bottom = 1079.0
 mouse_filter = 2
+size_flags_stretch_ratio = 10.0
 custom_constants/margin_right = 150
 custom_constants/margin_top = 100
 custom_constants/margin_left = 150
@@ -198,6 +199,7 @@ anchor_bottom = 1.0
 custom_constants/separation = 52
 
 [node name="Language" parent="Header/Content/TabContainer/General" instance=ExtResource( 10 )]
+margin_bottom = 106.0
 
 [node name="TabSwitch" type="Node" parent="."]
 script = ExtResource( 6 )

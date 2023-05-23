@@ -12,14 +12,7 @@ var _download_path: String
 func _ready():
 	connect("download_error_occurred", self, '_clean_http_request')
 	
-#	download('https://www.youtube.com/watch?v=lhbA8f5Bf8E',
-#		ProjectSettings.globalize_path("user://songs/test.mp3")
-#	) # Gangsta paradise
-	
-#	download('1111',
-#		ProjectSettings.globalize_path("user://songs/test.mp3")
-#	) # Error test
-	
+
 
 func _clean_http_request():
 	http_request.queue_free()

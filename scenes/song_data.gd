@@ -22,12 +22,12 @@ func load_stream():
 	if ResourceLoader.exists(path):
 		result = load(path)
 	else:
-		push_warning('Loading external song %s' % path)
 		var file = File.new()
 		if not file.file_exists(path):
 			push_warning('File not exists %s' % path)
 			return null
 		
+		push_warning('Loading external song %s' % path)
 		if extension.ends_with("mp3"):
 			result = AudioStreamMP3.new()
 		elif extension.ends_with("ogg"):
