@@ -10,4 +10,4 @@ func _ready():
 
 
 func _on_search_button_pressed():
-	popup.visible = true
+	popup.visible = !popup.visible
