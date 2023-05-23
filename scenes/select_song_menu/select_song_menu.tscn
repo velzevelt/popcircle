@@ -14,7 +14,7 @@
 [ext_resource path="res://scenes/search_http/youtube/search_youtube.gd" type="Script" id=12]
 [ext_resource path="res://scenes/select_song_menu/search_popup.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/select_song_menu/global_search_menu/global_search_result.tscn" type="PackedScene" id=15]
-[ext_resource path="res://scenes/select_song_menu/update_songs_at_ready.gd" type="Script" id=16]
+[ext_resource path="res://scenes/select_song_menu/update_songs.gd" type="Script" id=16]
 [ext_resource path="res://scenes/select_song_menu/global_search.gd" type="Script" id=17]
 
 [sub_resource type="StyleBoxFlat" id=4]
@@ -305,7 +305,8 @@ margin_top = 950.0
 margin_right = 254.0
 margin_bottom = 1100.0
 
-[node name="UpdateSongsAtReady" type="Node" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer"]
+[node name="UpdateSongs" type="Node" parent="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
 script = ExtResource( 16 )
 target = NodePath("../Songs")
 
@@ -440,6 +441,7 @@ visible = false
 [connection signal="search_failed" from="SearchPopup/SearchYoutube" to="GlobalSearchResult/SearchBridge" method="_on_SearchYoutube_search_failed"]
 [connection signal="search_started" from="SearchPopup/SearchYoutube" to="GlobalSearchResult/SearchBridge" method="_on_SearchYoutube_search_started"]
 [connection signal="songs_updated" from="SearchPopup/SearchYoutube" to="GlobalSearchResult/SearchBridge" method="_on_SearchYoutube_songs_updated"]
+[connection signal="song_downloaded" from="GlobalSearchResult/DownloadButton/DownloadYoutube" to="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/UpdateSongs" method="_on_DownloadYoutube_song_downloaded"]
 
 [editable path="SearchPopup"]
 [editable path="SearchPopup/MarginContainer/VBoxContainer/GlobalSearch"]

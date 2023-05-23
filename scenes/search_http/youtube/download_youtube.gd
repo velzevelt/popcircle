@@ -3,6 +3,7 @@ extends Node
 signal download_started
 signal download_error_occurred
 signal download_done(path)
+signal song_downloaded(song_data)
 
 var http_request: HTTPRequest
 var _file_token_info: Dictionary
@@ -16,7 +17,6 @@ func _ready():
 
 func _clean_http_request():
 	http_request.queue_free()
-	#breakpoint
 
 
 func download(url: String, path: String):
@@ -122,5 +122,13 @@ func _on_download_request_completed(result: int, response_code: int, headers: Po
 	file.close()
 	
 	emit_signal("download_done", _download_path)
+	
+	var song = SongData.new()
+	song.path = _download_path
+	song.extension = _download_path.get_extension()
+	song.name = _download_path.get_file().trim_suffix("." + song.extension)
+	
+	song.load_stream()
+	emit_signal("song_downloaded", song)
 	#breakpoint
 

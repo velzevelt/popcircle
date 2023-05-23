@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/button_color_tint/press_color_tint.gd" type="Script" id=1]
 [ext_resource path="res://scenes/main_menu/default_font.tres" type="DynamicFont" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://scenes/select_song_menu/global_search_menu/menu_state.gd" type="Script" id=9]
 [ext_resource path="res://scenes/select_song_menu/global_search_menu/close_menu.gd" type="Script" id=10]
 [ext_resource path="res://scenes/select_song_menu/global_search_menu/loading_icon_node.gd" type="Script" id=11]
+[ext_resource path="res://scenes/search_http/youtube/download_youtube.gd" type="Script" id=12]
+[ext_resource path="res://scenes/select_song_menu/global_search_menu/download_button_node.gd" type="Script" id=13]
 
 [sub_resource type="StyleBoxLine" id=2]
 color = Color( 1, 1, 1, 1 )
@@ -140,6 +142,13 @@ margin_bottom = 50.0
 texture = ExtResource( 5 )
 expand = true
 
+[node name="DownloadButtonNode" type="Node" parent="DownloadButton"]
+script = ExtResource( 13 )
+request = NodePath("../DownloadYoutube")
+
+[node name="DownloadYoutube" type="Node" parent="DownloadButton"]
+script = ExtResource( 12 )
+
 [node name="LoadingIcon" parent="." instance=ExtResource( 6 )]
 unique_name_in_owner = true
 margin_left = 18.0
@@ -164,4 +173,10 @@ script = ExtResource( 10 )
 root = NodePath("..")
 
 [connection signal="pressed" from="CloseMenuButton" to="CloseMenu" method="_on_CloseMenuButton_pressed"]
+[connection signal="double_clicked" from="Header/Content/ScrollContainer/Songs" to="DownloadButton/DownloadButtonNode" method="_on_Songs_double_clicked"]
+[connection signal="song_selected" from="Header/Content/ScrollContainer/Songs" to="DownloadButton/DownloadButtonNode" method="_on_Songs_song_selected"]
+[connection signal="download_done" from="DownloadButton/DownloadYoutube" to="DownloadButton/DownloadButtonNode" method="_on_DownloadYoutube_download_done"]
+[connection signal="download_error_occurred" from="DownloadButton/DownloadYoutube" to="DownloadButton/DownloadButtonNode" method="_on_DownloadYoutube_download_error_occurred"]
+[connection signal="download_started" from="DownloadButton/DownloadYoutube" to="DownloadButton/DownloadButtonNode" method="_on_DownloadYoutube_download_started"]
+[connection signal="song_downloaded" from="DownloadButton/DownloadYoutube" to="DownloadButton/DownloadButtonNode" method="_on_DownloadYoutube_song_downloaded"]
 [connection signal="menu_state_changed" from="MenuState" to="LoadingIcon/LoadingIconNode" method="_on_MenuState_menu_state_changed"]

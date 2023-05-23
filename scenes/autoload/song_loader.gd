@@ -1,9 +1,9 @@
 class_name SongLoaderStatic
 extends Node
 
-var _songs_path: String = "res://songs"
-var _user_songs_path: String = "user://songs"
-var _path_to_readme_file: String = "res://songs/readme.txt"
+const _songs_path: String = "res://songs"
+const _user_songs_path: String = "user://songs"
+const _path_to_readme_file: String = "res://songs/readme.txt"
 var _songs: Array = []
 
 

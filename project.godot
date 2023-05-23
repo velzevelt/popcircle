@@ -50,6 +50,11 @@ _global_script_classes=[ {
 "path": "res://scenes/game/replay_button.gd"
 }, {
 "base": "Resource",
+"class": "Song",
+"language": "GDScript",
+"path": "res://scenes/search_http/youtube/song.gd"
+}, {
+"base": "Resource",
 "class": "SongData",
 "language": "GDScript",
 "path": "res://scenes/song_data.gd"
@@ -78,6 +83,7 @@ _global_script_class_icons={
 "MenuState": "",
 "PressColorTintNode": "",
 "ReplayButtonNode": "",
+"Song": "",
 "SongData": "",
 "SongLoaderStatic": "",
 "Spawner": "",
