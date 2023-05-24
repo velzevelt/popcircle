@@ -5,8 +5,4 @@
 [node name="CursorL" type="CanvasLayer"]
 pause_mode = 2
 layer = 100
-
-[node name="Cursor" type="Node2D" parent="."]
-show_behind_parent = true
-z_index = 1000
 script = ExtResource( 1 )

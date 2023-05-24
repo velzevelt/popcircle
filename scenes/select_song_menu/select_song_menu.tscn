@@ -457,4 +457,4 @@ visible = false
 [editable path="SearchPopup/MarginContainer/VBoxContainer/LocalSearch"]
 [editable path="SearchPopup/MarginContainer/VBoxContainer/GlobalSearch"]
 [editable path="GlobalSearchResult"]
-[editable path="GlobalSearchResult/ConfirmPopup"]
+[editable path="GlobalSearchResult/ConfirmExit"]

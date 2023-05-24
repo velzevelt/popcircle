@@ -1,73 +1,35 @@
-extends Node2D
-
-signal just_pressed
-signal just_released
-
-export var anim_duration := 0.3
+extends CanvasLayer
 
 var cursor_texture = preload("res://sprites/cursor_default.svg")
-onready var _size_frames: Array = _create_frames()
-onready var _current_frame := 0 setget set_current_frame
-
-func set_current_frame(value: int):
-	if value < 0:
-		value = 0
-	elif value > _size_frames.size() - 1:
-		value = _size_frames.size() - 1
-	
-	_current_frame = value
-	
+onready var size: Vector2 = cursor_texture.get_size() setget set_size, get_size
 
 
-func _create_frames() -> Array:
-	var result = []
-	var frames = 20
-	var skipped_frames = 10
-	var step = cursor_texture.get_size() / frames
+func set_size(value):
+	if value.x <= 0 or value.y <= 0 or value.x > 64 or value.y > 64:
+		push_warning('Invalid cursor size, using standart size')
+		value = cursor_texture.get_size()
 	
-	for i in range(1 + skipped_frames, frames + 1):
-		var image = cursor_texture.get_data()
-		image.resize(step.x * i, step.y * i, Image.INTERPOLATE_LANCZOS)
-		
-		var texture = ImageTexture.new()
-		texture.create_from_image(image)
-		result.append(texture)
-	
-	return result
+	size = value
+	_resize_cursor(size)
+
+
+func get_size():
+	return size
 
 
 func _ready():
-	_set_cursor_frame()
-	#connect("just_pressed", self, "_on_just_pressed")
-	#connect("just_released", self, "_on_just_released")
+	_resize_cursor(Vector2(32, 32))
 
 
-func _set_cursor_frame(frame: int = self._current_frame) -> void:
-	Input.set_custom_mouse_cursor(_size_frames[frame], Input.CURSOR_ARROW, _size_frames[frame].get_size() / 2)
-
-
-
-
-
-func _input(event):
-	if Input.is_action_just_pressed("click"):
-		emit_signal("just_pressed")
+func _resize_cursor(size: Vector2):
+	var cursor = cursor_texture.get_data()
+	cursor.resize(size.x, size.y, Image.INTERPOLATE_LANCZOS)
 	
-	if Input.is_action_just_released("click"):
-		emit_signal("just_released")
+	var texture = ImageTexture.new()
+	texture.create_from_image(cursor)
 	
+	_set_cursor(texture)
 
-#func _process(delta):
-#	_set_cursor_frame()
 
-func _on_just_pressed():
-	pass
-#	var tween = create_tween()
-#	tween.set_ease(Tween.EASE_IN)
-#	tween.tween_method(self, "set_current_frame", self._current_frame, _size_frames.size() - 1, anim_duration)
-
-func _on_just_released():
-	pass
-#	var tween = create_tween()
-#	tween.set_ease(Tween.EASE_OUT)
-#	tween.tween_method(self, "set_current_frame", self._current_frame, 0, anim_duration)
+func _set_cursor(texture):
+	Input.set_custom_mouse_cursor(texture, Input.CURSOR_ARROW, texture.get_size() / 2)

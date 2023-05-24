@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/button_color_tint/press_color_tint.gd" type="Script" id=1]
 [ext_resource path="res://scenes/main_menu/default_font.tres" type="DynamicFont" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://sprites/tab_arrow.svg" type="Texture" id=8]
 [ext_resource path="res://scenes/settings_menu/tab_container.gd" type="Script" id=9]
 [ext_resource path="res://scenes/settings_menu/option_button.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/settings_menu/language_option.gd" type="Script" id=11]
+[ext_resource path="res://scenes/settings_menu/cursor_size_option.gd" type="Script" id=12]
 
 [sub_resource type="StyleBoxLine" id=2]
 color = Color( 1, 1, 1, 1 )
@@ -26,6 +28,8 @@ font_data = ExtResource( 7 )
 [sub_resource type="StyleBoxEmpty" id=6]
 
 [sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="AnimatedTexture" id=8]
 
 [node name="Settings" type="Control"]
 anchor_right = 1.0
@@ -135,7 +139,7 @@ size_flags_vertical = 3
 [node name="Content" type="MarginContainer" parent="Header"]
 margin_top = 299.0
 margin_right = 1920.0
-margin_bottom = 1079.0
+margin_bottom = 813.0
 mouse_filter = 2
 size_flags_stretch_ratio = 10.0
 custom_constants/margin_right = 150
@@ -147,7 +151,7 @@ custom_constants/margin_bottom = 150
 margin_left = 150.0
 margin_top = 100.0
 margin_right = 1770.0
-margin_bottom = 630.0
+margin_bottom = 364.0
 custom_styles/tab_fg = SubResource( 4 )
 custom_styles/tab_disabled = SubResource( 5 )
 custom_styles/tab_bg = SubResource( 6 )
@@ -157,6 +161,7 @@ script = ExtResource( 9 )
 settings_group_label = NodePath("../../Tab/SettingsGroup")
 
 [node name="Audio" type="VBoxContainer" parent="Header/Content/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 52
@@ -193,13 +198,24 @@ slider = NodePath("../HBoxContainer/HSlider")
 music_bus_name = "Sounds"
 
 [node name="General" type="VBoxContainer" parent="Header/Content/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 52
 
 [node name="Language" parent="Header/Content/TabContainer/General" instance=ExtResource( 10 )]
 margin_bottom = 106.0
+
+[node name="LanguageOption" type="Node" parent="Header/Content/TabContainer/General/Language"]
+script = ExtResource( 11 )
+
+[node name="CursorSize" parent="Header/Content/TabContainer/General" instance=ExtResource( 10 )]
+margin_top = 158.0
+margin_bottom = 264.0
+text = "Cursor Size"
+icon = SubResource( 8 )
+
+[node name="CursorSize" type="Node" parent="Header/Content/TabContainer/General/CursorSize"]
+script = ExtResource( 12 )
 
 [node name="TabSwitch" type="Node" parent="."]
 script = ExtResource( 6 )

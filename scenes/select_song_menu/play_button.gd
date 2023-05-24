@@ -15,7 +15,7 @@ func play():
 	game_song_data.stream = current_song_data.stream
 	
 	
-	get_tree().change_scene("res://scenes/game/game.tscn")
+	SceneTransition.change_scene("res://scenes/game/game.tscn")
 	
 
 func _on_PlayButton_pressed():

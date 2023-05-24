@@ -20,6 +20,9 @@ func _load_locales_as_options() -> void:
 
 
 func _on_language_selected(id):
+	if id == -1:
+		return
+	
 	var locale = option_locales[id - 1]
 	TranslationServer.set_locale(locale)
 	print(TranslationServer.get_locale())
