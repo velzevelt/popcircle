@@ -37,14 +37,14 @@ func _on_double_clicked():
 	emit_signal("double_clicked")
 
 
-func _on_search_input_text_changed(new_text):
+func _on_LocalSearch_text_entered(new_text):
+	var text = new_text.to_lower()
+	for c in get_children():
+		c.visible = text in c.song_data.name.to_lower()
+
+
+func _on_LocalSearch_text_changed(new_text):
 	if new_text == "":
 		for c in get_children():
 			c.visible = true
 		return
-
-
-#func _on_Title_text_entered(new_text):
-#	var text = search_input.text.to_lower()
-#	for c in get_children():
-#		c.visible = text in c.song_data.name.to_lower()

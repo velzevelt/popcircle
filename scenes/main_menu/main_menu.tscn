@@ -1,7 +1,7 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://sprites/play_button.svg" type="Texture" id=1]
-[ext_resource path="res://scenes/main_menu/exit_button.gd" type="Script" id=2]
+[ext_resource path="res://scenes/popup_message/show_popup.gd" type="Script" id=2]
 [ext_resource path="res://sprites/exit_button.svg" type="Texture" id=3]
 [ext_resource path="res://sprites/settings_button.svg" type="Texture" id=4]
 [ext_resource path="res://scenes/button_color_tint/press_color_tint.gd" type="Script" id=5]
@@ -13,7 +13,9 @@
 [ext_resource path="res://scenes/canvas_transition/canvas_transition.gd" type="Script" id=11]
 [ext_resource path="res://scenes/canvas_transition/canvas_node.gd" type="Script" id=12]
 [ext_resource path="res://scenes/about_menu/about.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/popup_message/confirm_popup/confirm_popup.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/select_song_menu/select_song_menu.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/main_menu/exit_game.gd" type="Script" id=16]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.054902, 0.054902, 0.054902, 1 )
@@ -80,11 +82,12 @@ margin_right = 451.0
 margin_bottom = 107.0
 texture_normal = ExtResource( 3 )
 
-[node name="ExitButtonNode" type="Node" parent="MenuL/Menu/TopPanel/HBoxContainer/ExitButton"]
-script = ExtResource( 2 )
-
 [node name="PressColorTintNode3" type="Node" parent="MenuL/Menu/TopPanel/HBoxContainer/ExitButton"]
 script = ExtResource( 5 )
+
+[node name="ShowPopup" type="Node" parent="MenuL/Menu/TopPanel/HBoxContainer/ExitButton"]
+script = ExtResource( 2 )
+target = NodePath("../../../../../ConfirmPopup")
 
 [node name="AboutButton" type="TextureButton" parent="MenuL/Menu"]
 self_modulate = Color( 0.592157, 0, 1, 1 )
@@ -109,6 +112,14 @@ custom_styles/panel = SubResource( 1 )
 
 [node name="PressColorTintNode" type="Node" parent="MenuL/Menu/AboutButton"]
 script = ExtResource( 5 )
+
+[node name="ConfirmPopup" parent="MenuL" instance=ExtResource( 14 )]
+
+[node name="Message" parent="MenuL/ConfirmPopup/VBoxContainer/MarginContainer/VBoxContainer" index="0"]
+text = "CONFIRM_EXIT_GAME"
+
+[node name="ExitGame" type="Node" parent="MenuL/ConfirmPopup"]
+script = ExtResource( 16 )
 
 [node name="BGL" type="CanvasLayer" parent="."]
 layer = -1
@@ -153,13 +164,20 @@ script = ExtResource( 12 )
 
 [connection signal="pressed" from="MenuL/Menu/TopPanel/HBoxContainer/PlayButton" to="SelectSongL/SelectSongNode" method="_on_activate_button_pressed"]
 [connection signal="pressed" from="MenuL/Menu/TopPanel/HBoxContainer/SettingsButton" to="SettingsL/SettingsNode" method="_on_activate_button_pressed"]
+[connection signal="pressed" from="MenuL/Menu/TopPanel/HBoxContainer/ExitButton" to="MenuL/Menu/TopPanel/HBoxContainer/ExitButton/ShowPopup" method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="MenuL/Menu/AboutButton" to="AboutL/About" method="_on_activate_button_pressed"]
+[connection signal="yes_pressed" from="MenuL/ConfirmPopup" to="MenuL/ConfirmPopup/ExitGame" method="_on_ConfirmPopup_yes_pressed"]
 [connection signal="pressed" from="AboutL/AboutControl/CloseMenuButton" to="AboutL/About" method="_on_close_button_pressed"]
 [connection signal="pressed" from="SelectSongL/SelectSongMenu/Close/CloseButton" to="SelectSongL/SelectSongNode" method="_on_close_button_pressed"]
 [connection signal="pressed" from="SettingsL/Settings/CloseMenuButton" to="SettingsL/SettingsNode" method="_on_close_button_pressed"]
 
+[editable path="MenuL/ConfirmPopup"]
 [editable path="AboutL/AboutControl"]
 [editable path="SelectSongL/SelectSongMenu"]
+[editable path="SelectSongL/SelectSongMenu/SearchPopup"]
+[editable path="SelectSongL/SelectSongMenu/SearchPopup/MarginContainer/VBoxContainer/LocalSearch"]
+[editable path="SelectSongL/SelectSongMenu/SearchPopup/MarginContainer/VBoxContainer/GlobalSearch"]
+[editable path="SelectSongL/SelectSongMenu/GlobalSearchResult"]
 [editable path="SettingsL/Settings"]
 [editable path="SettingsL/Settings/Header/Content/TabContainer/Audio/MasterSlider"]
 [editable path="SettingsL/Settings/Header/Content/TabContainer/Audio/MusicSlider"]

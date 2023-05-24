@@ -39,10 +39,12 @@ func format_title(video_title: String) -> String:
 	]
 	
 	for _char in forbidden_chars:
-		result = result.replace(_char, '_')
+		result = result.replace(_char, ' ')
 	
 	result = result.strip_edges()
-	result = result.replace('_', ' ')
+	
+	if not result.is_valid_filename():
+		result = "song" + str(Time.get_ticks_usec())
 	
 	assert(result.is_valid_filename())
 	

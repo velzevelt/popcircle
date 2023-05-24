@@ -4,15 +4,16 @@ signal download_started
 signal download_error_occurred
 signal download_done(path)
 signal song_downloaded(song_data)
+signal chunk_downloaded(total_downloaded_size, total_size)
 
 var http_request: HTTPRequest
 var _file_token_info: Dictionary
 var _download_path: String
+var _can_get_downloaded_size := false
 
 
 func _ready():
 	connect("download_error_occurred", self, '_clean_http_request')
-	
 
 
 func _clean_http_request():
@@ -69,15 +70,24 @@ func download(url: String, path: String):
 	var get_url = "https://s61.notube.net/download.php?token=%s" % _file_token_info['token']
 	err = http_request.request(get_url, headers, true, HTTPClient.METHOD_GET)
 	
+	# Try to get downloaded size
+	_can_get_downloaded_size = true
+	
 	if err != OK:
 		push_warning("Request error")
 		emit_signal("download_error_occurred")
+		_can_get_downloaded_size = false
 		return
 	
 	
 	yield(http_request, "request_completed")
+	_can_get_downloaded_size = false
 	_clean_http_request()
 
+func _physics_process(delta):
+	if _can_get_downloaded_size and is_instance_valid(http_request):
+		emit_signal("chunk_downloaded", http_request.get_downloaded_bytes(), http_request.get_body_size())
+		
 
 # Get token and some info
 func _on_file_token_info_requested(result: int, response_code: int, headers: PoolStringArray, body: PoolByteArray):

@@ -9,5 +9,5 @@ func _ready():
 
 
 func _on_pressed():
-	get_tree().change_scene_to(back_scene)
 	get_tree().paused = false
+	get_tree().change_scene_to(back_scene)

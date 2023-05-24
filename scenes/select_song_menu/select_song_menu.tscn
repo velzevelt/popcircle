@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scenes/main_menu/default_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/select_song_menu/song_button.tscn" type="PackedScene" id=2]
@@ -12,10 +12,12 @@
 [ext_resource path="res://sprites/search_icon.svg" type="Texture" id=10]
 [ext_resource path="res://scenes/select_song_menu/search_button_node.gd" type="Script" id=11]
 [ext_resource path="res://scenes/search_http/youtube/search_youtube.gd" type="Script" id=12]
+[ext_resource path="res://scenes/select_song_menu/local_search.gd" type="Script" id=13]
 [ext_resource path="res://scenes/select_song_menu/search_popup.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/select_song_menu/global_search_menu/global_search_result.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/select_song_menu/update_songs.gd" type="Script" id=16]
 [ext_resource path="res://scenes/select_song_menu/global_search.gd" type="Script" id=17]
+[ext_resource path="res://scenes/popup_message/popup_window.gd" type="Script" id=18]
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0, 0, 0, 0.713726 )
@@ -422,6 +424,11 @@ script = ExtResource( 11 )
 popup = NodePath("../../SearchPopup")
 
 [node name="SearchPopup" parent="." instance=ExtResource( 14 )]
+script = ExtResource( 18 )
+
+[node name="LocalSearch" type="Node" parent="SearchPopup/MarginContainer/VBoxContainer/LocalSearch" index="2"]
+script = ExtResource( 13 )
+root = NodePath("../../../..")
 
 [node name="GlobalSearch" type="Node" parent="SearchPopup/MarginContainer/VBoxContainer/GlobalSearch" index="2"]
 script = ExtResource( 17 )
@@ -437,6 +444,9 @@ visible = false
 [connection signal="double_clicked" from="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" to="PlayButton/PlayButton" method="_on_Songs_double_clicked"]
 [connection signal="song_selected" from="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" to="PlayButton/PlayButton" method="_on_Songs_song_selected"]
 [connection signal="pressed" from="PlayButton" to="PlayButton/PlayButton" method="_on_PlayButton_pressed"]
+[connection signal="text_entered" from="SearchPopup/MarginContainer/VBoxContainer/LocalSearch" to="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" method="_on_LocalSearch_text_entered"]
+[connection signal="text_entered" from="SearchPopup/MarginContainer/VBoxContainer/LocalSearch" to="SearchPopup/MarginContainer/VBoxContainer/LocalSearch/LocalSearch" method="_on_LocalSearch_text_entered"]
+[connection signal="text_changed" from="SearchPopup/MarginContainer/VBoxContainer/LocalSearch/LineEdit" to="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" method="_on_LocalSearch_text_changed"]
 [connection signal="text_entered" from="SearchPopup/MarginContainer/VBoxContainer/GlobalSearch" to="SearchPopup/MarginContainer/VBoxContainer/GlobalSearch/GlobalSearch" method="_on_GlobalSearch_text_entered"]
 [connection signal="search_failed" from="SearchPopup/SearchYoutube" to="GlobalSearchResult/SearchBridge" method="_on_SearchYoutube_search_failed"]
 [connection signal="search_started" from="SearchPopup/SearchYoutube" to="GlobalSearchResult/SearchBridge" method="_on_SearchYoutube_search_started"]
@@ -444,5 +454,6 @@ visible = false
 [connection signal="song_downloaded" from="GlobalSearchResult/DownloadButton/DownloadYoutube" to="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/UpdateSongs" method="_on_DownloadYoutube_song_downloaded"]
 
 [editable path="SearchPopup"]
+[editable path="SearchPopup/MarginContainer/VBoxContainer/LocalSearch"]
 [editable path="SearchPopup/MarginContainer/VBoxContainer/GlobalSearch"]
 [editable path="GlobalSearchResult"]

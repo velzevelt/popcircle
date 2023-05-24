@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/button_color_tint/press_color_tint.gd" type="Script" id=1]
 [ext_resource path="res://scenes/main_menu/default_font.tres" type="DynamicFont" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://scenes/select_song_menu/global_search_menu/loading_icon_node.gd" type="Script" id=11]
 [ext_resource path="res://scenes/search_http/youtube/download_youtube.gd" type="Script" id=12]
 [ext_resource path="res://scenes/select_song_menu/global_search_menu/download_button_node.gd" type="Script" id=13]
+[ext_resource path="res://scenes/select_song_menu/global_search_menu/loading_message.gd" type="Script" id=14]
+[ext_resource path="res://scenes/game/label_font.tres" type="DynamicFont" id=15]
 
 [sub_resource type="StyleBoxLine" id=2]
 color = Color( 1, 1, 1, 1 )
@@ -105,10 +107,22 @@ margin_left = 150.0
 margin_right = 1770.0
 margin_bottom = 608.0
 
-[node name="Songs" type="HFlowContainer" parent="Header/Content/ScrollContainer"]
-unique_name_in_owner = true
+[node name="MarginContainer" type="MarginContainer" parent="Header/Content/ScrollContainer"]
 margin_right = 1620.0
 margin_bottom = 608.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 40
+custom_constants/margin_top = 40
+custom_constants/margin_left = 40
+custom_constants/margin_bottom = 40
+
+[node name="Songs" type="HFlowContainer" parent="Header/Content/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 1580.0
+margin_bottom = 568.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/vseparation = 40
@@ -149,19 +163,38 @@ request = NodePath("../DownloadYoutube")
 [node name="DownloadYoutube" type="Node" parent="DownloadButton"]
 script = ExtResource( 12 )
 
-[node name="LoadingIcon" parent="." instance=ExtResource( 6 )]
-unique_name_in_owner = true
-margin_left = 18.0
-margin_top = 16.0
-margin_right = 82.0
-margin_bottom = 80.0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 394.0
+margin_bottom = 90.0
 
-[node name="LoadingIconNode" type="Node" parent="LoadingIcon"]
+[node name="LoadingIcon" parent="HBoxContainer" instance=ExtResource( 6 )]
+unique_name_in_owner = true
+margin_right = 84.0
+margin_bottom = 66.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="LoadingIconNode" type="Node" parent="HBoxContainer/LoadingIcon"]
 script = ExtResource( 11 )
+
+[node name="LoadingMessage" type="Label" parent="HBoxContainer"]
+margin_left = 88.0
+margin_top = 19.0
+margin_right = 370.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 15 )
+text = "awaww"
+
+[node name="LoadingMessage" type="Node" parent="HBoxContainer/LoadingMessage"]
+script = ExtResource( 14 )
 
 [node name="SearchBridge" type="Node" parent="."]
 script = ExtResource( 8 )
-target = NodePath("../Header/Content/ScrollContainer/Songs")
+target = NodePath("../Header/Content/ScrollContainer/MarginContainer/Songs")
 root = NodePath("..")
 
 [node name="MenuState" type="Node" parent="."]
@@ -173,10 +206,12 @@ script = ExtResource( 10 )
 root = NodePath("..")
 
 [connection signal="pressed" from="CloseMenuButton" to="CloseMenu" method="_on_CloseMenuButton_pressed"]
-[connection signal="double_clicked" from="Header/Content/ScrollContainer/Songs" to="DownloadButton/DownloadButtonNode" method="_on_Songs_double_clicked"]
-[connection signal="song_selected" from="Header/Content/ScrollContainer/Songs" to="DownloadButton/DownloadButtonNode" method="_on_Songs_song_selected"]
+[connection signal="double_clicked" from="Header/Content/ScrollContainer/MarginContainer/Songs" to="DownloadButton/DownloadButtonNode" method="_on_Songs_double_clicked"]
+[connection signal="song_selected" from="Header/Content/ScrollContainer/MarginContainer/Songs" to="DownloadButton/DownloadButtonNode" method="_on_Songs_song_selected"]
+[connection signal="chunk_downloaded" from="DownloadButton/DownloadYoutube" to="HBoxContainer/LoadingMessage/LoadingMessage" method="_on_DownloadYoutube_chunk_downloaded"]
 [connection signal="download_done" from="DownloadButton/DownloadYoutube" to="DownloadButton/DownloadButtonNode" method="_on_DownloadYoutube_download_done"]
 [connection signal="download_error_occurred" from="DownloadButton/DownloadYoutube" to="DownloadButton/DownloadButtonNode" method="_on_DownloadYoutube_download_error_occurred"]
 [connection signal="download_started" from="DownloadButton/DownloadYoutube" to="DownloadButton/DownloadButtonNode" method="_on_DownloadYoutube_download_started"]
 [connection signal="song_downloaded" from="DownloadButton/DownloadYoutube" to="DownloadButton/DownloadButtonNode" method="_on_DownloadYoutube_song_downloaded"]
-[connection signal="menu_state_changed" from="MenuState" to="LoadingIcon/LoadingIconNode" method="_on_MenuState_menu_state_changed"]
+[connection signal="menu_state_changed" from="MenuState" to="HBoxContainer/LoadingIcon/LoadingIconNode" method="_on_MenuState_menu_state_changed"]
+[connection signal="menu_state_changed" from="MenuState" to="HBoxContainer/LoadingMessage/LoadingMessage" method="_on_MenuState_menu_state_changed"]
