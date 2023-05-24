@@ -20,6 +20,13 @@ func _clean_http_request():
 	http_request.queue_free()
 
 
+func cancel_request():
+	if is_instance_valid(http_request):
+		http_request.cancel_request()
+		_clean_http_request()
+	
+
+
 func download(url: String, path: String):
 	if is_instance_valid(http_request):
 		push_warning("Request is busy")

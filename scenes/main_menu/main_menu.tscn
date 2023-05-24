@@ -178,6 +178,7 @@ script = ExtResource( 12 )
 [editable path="SelectSongL/SelectSongMenu/SearchPopup/MarginContainer/VBoxContainer/LocalSearch"]
 [editable path="SelectSongL/SelectSongMenu/SearchPopup/MarginContainer/VBoxContainer/GlobalSearch"]
 [editable path="SelectSongL/SelectSongMenu/GlobalSearchResult"]
+[editable path="SelectSongL/SelectSongMenu/GlobalSearchResult/ConfirmPopup"]
 [editable path="SettingsL/Settings"]
 [editable path="SettingsL/Settings/Header/Content/TabContainer/Audio/MasterSlider"]
 [editable path="SettingsL/Settings/Header/Content/TabContainer/Audio/MusicSlider"]

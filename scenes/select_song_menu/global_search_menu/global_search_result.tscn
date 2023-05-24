@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/button_color_tint/press_color_tint.gd" type="Script" id=1]
 [ext_resource path="res://scenes/main_menu/default_font.tres" type="DynamicFont" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://scenes/select_song_menu/global_search_menu/download_button_node.gd" type="Script" id=13]
 [ext_resource path="res://scenes/select_song_menu/global_search_menu/loading_message.gd" type="Script" id=14]
 [ext_resource path="res://scenes/game/label_font.tres" type="DynamicFont" id=15]
+[ext_resource path="res://scenes/popup_message/confirm_popup/confirm_popup.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/select_song_menu/global_search_menu/abort_requests.gd" type="Script" id=17]
 
 [sub_resource type="StyleBoxLine" id=2]
 color = Color( 1, 1, 1, 1 )
@@ -205,6 +207,16 @@ script = ExtResource( 9 )
 script = ExtResource( 10 )
 root = NodePath("..")
 
+[node name="ConfirmExit" parent="." instance=ExtResource( 16 )]
+unique_name_in_owner = true
+
+[node name="Message" parent="ConfirmExit/VBoxContainer/MarginContainer/VBoxContainer" index="0"]
+text = "CONFIRM_ABORT_DOWNLOAD"
+
+[node name="AbortRequests" type="Node" parent="ConfirmExit"]
+script = ExtResource( 17 )
+request_handlers = [ NodePath("../../DownloadButton/DownloadYoutube") ]
+
 [connection signal="pressed" from="CloseMenuButton" to="CloseMenu" method="_on_CloseMenuButton_pressed"]
 [connection signal="double_clicked" from="Header/Content/ScrollContainer/MarginContainer/Songs" to="DownloadButton/DownloadButtonNode" method="_on_Songs_double_clicked"]
 [connection signal="song_selected" from="Header/Content/ScrollContainer/MarginContainer/Songs" to="DownloadButton/DownloadButtonNode" method="_on_Songs_song_selected"]
@@ -215,3 +227,6 @@ root = NodePath("..")
 [connection signal="song_downloaded" from="DownloadButton/DownloadYoutube" to="DownloadButton/DownloadButtonNode" method="_on_DownloadYoutube_song_downloaded"]
 [connection signal="menu_state_changed" from="MenuState" to="HBoxContainer/LoadingIcon/LoadingIconNode" method="_on_MenuState_menu_state_changed"]
 [connection signal="menu_state_changed" from="MenuState" to="HBoxContainer/LoadingMessage/LoadingMessage" method="_on_MenuState_menu_state_changed"]
+[connection signal="yes_pressed" from="ConfirmExit" to="ConfirmExit/AbortRequests" method="_on_ConfirmPopup_yes_pressed"]
+
+[editable path="ConfirmExit"]
