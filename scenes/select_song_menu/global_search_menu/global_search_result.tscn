@@ -99,18 +99,17 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 10.0
-custom_constants/margin_right = 150
-custom_constants/margin_top = 0
-custom_constants/margin_left = 150
+custom_constants/margin_right = 40
+custom_constants/margin_left = 40
 custom_constants/margin_bottom = 200
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Header/Content"]
-margin_left = 150.0
-margin_right = 1770.0
+margin_left = 40.0
+margin_right = 1880.0
 margin_bottom = 608.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Header/Content/ScrollContainer"]
-margin_right = 1620.0
+margin_right = 1840.0
 margin_bottom = 608.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -123,7 +122,7 @@ custom_constants/margin_bottom = 40
 unique_name_in_owner = true
 margin_left = 40.0
 margin_top = 40.0
-margin_right = 1580.0
+margin_right = 1800.0
 margin_bottom = 568.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
