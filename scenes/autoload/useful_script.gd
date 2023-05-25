@@ -15,6 +15,10 @@ func _process(delta):
 			thread.wait_to_finish()
 			thread = null
 
+func _exit_tree():
+	if is_instance_valid(thread):
+		thread.wait_to_finish()
+
 
 func _foo():
 	OS.shell_open("https://www.youtube.com/watch?v=dQw4w9WgXcQ?autoplay=1")

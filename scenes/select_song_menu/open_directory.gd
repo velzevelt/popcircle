@@ -28,3 +28,7 @@ func _process(delta):
 		if not thread.is_alive():
 			thread.wait_to_finish()
 			thread = null
+
+func _exit_tree():
+	if is_instance_valid(thread):
+		thread.wait_to_finish()

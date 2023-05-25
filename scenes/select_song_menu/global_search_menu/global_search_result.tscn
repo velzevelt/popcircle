@@ -212,6 +212,7 @@ unique_name_in_owner = true
 
 [node name="Message" parent="ConfirmExit/VBoxContainer/MarginContainer/VBoxContainer" index="0"]
 text = "CONFIRM_ABORT_DOWNLOAD"
+autowrap = true
 
 [node name="AbortRequests" type="Node" parent="ConfirmExit"]
 script = ExtResource( 17 )
