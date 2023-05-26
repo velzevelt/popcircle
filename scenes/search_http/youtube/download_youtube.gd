@@ -36,7 +36,7 @@ func download(url: String, path: String):
 	
 	http_request = HTTPRequest.new()
 	add_child(http_request)
-	http_request.use_threads = true
+	http_request.use_threads = not OS.has_feature('JavaScript') # Multithreading does not work on web
 	http_request.connect("request_completed", self, "_on_file_token_info_requested")
 	
 	# First step get file token and some info

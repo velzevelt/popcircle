@@ -49,11 +49,12 @@ func get_api_key() -> String:
 
 
 func search(song_name: String) -> void:
-	emit_signal('search_started')
+	assert(song_name != '', 'Empty search request')
 	
+	emit_signal('search_started')
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
-	http_request.use_threads = true
+	http_request.use_threads = not OS.has_feature('JavaScript') # Multithreading does not work on web
 	http_request.connect("request_completed", self, "_on_search_request_completed")
 	var err = http_request.request(get_request_url(song_name))
 	

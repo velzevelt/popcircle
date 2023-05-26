@@ -424,6 +424,7 @@ script = ExtResource( 11 )
 popup = NodePath("../../SearchPopup")
 
 [node name="SearchPopup" parent="." instance=ExtResource( 14 )]
+visible = true
 script = ExtResource( 18 )
 
 [node name="LocalSearch" type="Node" parent="SearchPopup/MarginContainer/VBoxContainer/LocalSearch" index="2"]

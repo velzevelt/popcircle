@@ -8,7 +8,7 @@ func change_scene_to(scene: PackedScene):
 	effect.play_backwards()
 	
 	get_tree().change_scene_to(scene)
-	
+	get_tree().paused = false
 
 
 func change_scene(path: String):
@@ -17,6 +17,7 @@ func change_scene(path: String):
 	effect.play_backwards()
 	
 	get_tree().change_scene(path)
+	get_tree().paused = false
 
 
 func reload_current_scene():
@@ -25,5 +26,6 @@ func reload_current_scene():
 	effect.play_backwards()
 	
 	get_tree().reload_current_scene()
+	get_tree().paused = false
 	
 
