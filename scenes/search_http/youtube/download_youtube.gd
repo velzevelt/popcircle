@@ -39,10 +39,13 @@ func download(url: String, path: String):
 	http_request.use_threads = not OS.has_feature('JavaScript') # Multithreading does not work on web
 	http_request.connect("request_completed", self, "_on_file_token_info_requested")
 	
+	# Pass through annoying cors policy, only required for web export
+	var proxy_url = "https://cors-anywhere.herokuapp.com/" if OS.has_feature("JavaScript") else ''
+	
 	# First step get file token and some info
 	var headers = ['Content-Type: application/x-www-form-urlencoded; charset=UTF-8']
 	var post_body = "url=%s&format=mp3&lang=ru" % url
-	var err = http_request.request("https://s61.notube.net/recover_weight.php", headers, true, HTTPClient.METHOD_POST,
+	var err = http_request.request(proxy_url + "https://s61.notube.net/recover_weight.php", headers, true, HTTPClient.METHOD_POST,
 	post_body
 	)
 	
@@ -58,7 +61,7 @@ func download(url: String, path: String):
 	# Second step send file conversion command to server
 	headers = ['Content-Type: application/x-www-form-urlencoded; charset=UTF-8']
 	post_body = "token=%s" % _file_token_info['token']
-	err = http_request.request("https://s61.notube.net/recover_weight.php", headers, true, HTTPClient.METHOD_POST,
+	err = http_request.request(proxy_url + "https://s61.notube.net/recover_weight.php", headers, true, HTTPClient.METHOD_POST,
 	post_body
 	)
 	
@@ -72,10 +75,10 @@ func download(url: String, path: String):
 	http_request.connect("request_completed", self, "_on_download_request_completed")
 	
 	# Third step download file
-	headers = []
+	headers = ['Origin: https://notube.net']
 	_download_path = path
 	var get_url = "https://s61.notube.net/download.php?token=%s" % _file_token_info['token']
-	err = http_request.request(get_url, headers, true, HTTPClient.METHOD_GET)
+	err = http_request.request(proxy_url + get_url, headers, true, HTTPClient.METHOD_GET)
 	
 	# Try to get downloaded size
 	_can_get_downloaded_size = true
@@ -99,7 +102,7 @@ func _physics_process(delta):
 # Get token and some info
 func _on_file_token_info_requested(result: int, response_code: int, headers: PoolStringArray, body: PoolByteArray):
 	if result != HTTPRequest.RESULT_SUCCESS:
-		push_warning("Request error DOWNLOAD FILE TOKEN")
+		push_warning("Request error DOWNLOAD FILE TOKEN result: %s" % result)
 		emit_signal("download_error_occurred")
 		return
 	
