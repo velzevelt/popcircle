@@ -2,6 +2,7 @@ extends Node
 
 const url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ?autoplay=1"
 
+var player = preload("res://scenes/one_time_audio_player/one_time_audio_player.tscn")
 var thread: Thread
 
 
@@ -30,4 +31,6 @@ func _exit_tree():
 
 
 func _foo():
-	OS.shell_open(url)
+	#OS.shell_open(url)
+	var instance = player.instance()
+	add_child(instance)
