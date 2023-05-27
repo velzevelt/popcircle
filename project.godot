@@ -94,6 +94,8 @@ _global_script_class_icons={
 
 config/name="PopCircle"
 run/main_scene="res://scenes/main_menu/main_menu.tscn"
+boot_splash/image="res://sprites/boot_splash.png"
+boot_splash/bg_color=Color( 0.101961, 0.101961, 0.101961, 1 )
 config/icon="res://project_icon.svg"
 
 [autoload]

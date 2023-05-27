@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1920"
+   height="1080"
+   viewBox="0 0 507.99999 285.75"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="boot_splash.svg.noimport"
+   inkscape:export-filename="boot_splash.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.32882251"
+     inkscape:cx="933.63438"
+     inkscape:cy="699.4655"
+     inkscape:window-width="1366"
+     inkscape:window-height="703"
+     inkscape:window-x="0"
+     inkscape:window-y="37"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Feather"
+       id="filter4710"
+       x="-0.11634782"
+       y="-0.11634782"
+       width="1.2326956"
+       height="1.2326956">
+      <feGaussianBlur
+         stdDeviation="4.17508"
+         result="blur"
+         id="feGaussianBlur4702" />
+      <feComposite
+         in="SourceGraphic"
+         in2="blur"
+         operator="atop"
+         result="composite1"
+         id="feComposite4704" />
+      <feComposite
+         in2="composite1"
+         operator="in"
+         result="composite2"
+         id="feComposite4706" />
+      <feComposite
+         in2="composite2"
+         operator="in"
+         result="composite3"
+         id="feComposite4708" />
+    </filter>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath70">
+      <path
+         d="M 0,512 H 512 V 0 H 0 Z"
+         id="path68" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath104">
+      <path
+         d="M 0,512 H 512 V 0 H 0 Z"
+         id="path102" />
+    </clipPath>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Feather"
+       id="filter7642"
+       x="-0.056823573"
+       y="-0.056823573"
+       width="1.1136471"
+       height="1.1136471">
+      <feGaussianBlur
+         stdDeviation="2.27327"
+         result="blur"
+         id="feGaussianBlur7634" />
+      <feComposite
+         in="SourceGraphic"
+         in2="blur"
+         operator="atop"
+         result="composite1"
+         id="feComposite7636" />
+      <feComposite
+         in2="composite1"
+         operator="in"
+         result="composite2"
+         id="feComposite7638" />
+      <feComposite
+         in2="composite2"
+         operator="in"
+         result="composite3"
+         id="feComposite7640" />
+    </filter>
+  </defs>
+  <g
+     inkscape:label="Слой 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     sodipodi:insensitive="true">
+    <rect
+       style="display:none;fill:#1a1a1a;fill-opacity:1;stroke-width:1.027"
+       id="rect358"
+       width="508"
+       height="285.75"
+       x="0"
+       y="0"
+       ry="2.6458333" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Слой 2">
+    <circle
+       style="fill:#ff8080;stroke-width:0.770251;filter:url(#filter7642)"
+       id="path603"
+       cx="254"
+       cy="142.875"
+       r="48.006905" />
+    <g
+       id="g64"
+       transform="matrix(0.26458333,0,0,-0.26458332,186.26667,210.60833)">
+      <g
+         id="g66"
+         clip-path="url(#clipPath70)" />
+    </g>
+    <g
+       id="g98"
+       style="fill:#000000;fill-opacity:1"
+       transform="matrix(0.26458333,0,0,-0.26458332,186.26667,210.60833)">
+      <g
+         id="g100"
+         clip-path="url(#clipPath104)"
+         style="fill:#000000;fill-opacity:1">
+        <g
+           id="g106"
+           transform="translate(257.4707,293.8208)"
+           style="fill:#000000;fill-opacity:1">
+          <path
+             d="m 0,0 c -18.929,0 -34.33,-15.399 -34.33,-34.328 0,-18.929 15.401,-34.329 34.33,-34.329 18.929,0 34.329,15.4 34.329,34.329 C 34.329,-15.399 18.929,0 0,0 m 0,-73.835 c -21.785,0 -39.508,17.722 -39.508,39.507 0,21.785 17.723,39.507 39.508,39.507 21.784,0 39.508,-17.722 39.508,-39.507 0,-21.785 -17.724,-39.507 -39.508,-39.507"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+             id="path108" />
+        </g>
+        <g
+           id="g110"
+           transform="translate(316.9141,189.4404)"
+           style="fill:#000000;fill-opacity:1">
+          <path
+             d="m 0,0 v 14.134 c 0,3.305 0.931,6.274 2.831,8.431 1.88,2.138 4.731,3.465 8.531,3.465 7.601,0 12.155,-5.285 12.155,-11.896 v -65.758 c 0,-5.939 -0.991,-11.461 -2.297,-16.172 -3.622,-13.163 -5.621,-22.21 -6.176,-34.265 -0.218,-4.454 -0.039,-8.947 0.476,-13.38 l 0.019,-0.12 c 0.436,-3.859 -1.584,-7.66 -5.364,-9.718 -6.137,-3.385 -17.499,-7.502 -36.343,-7.502 -19.953,0 -30.761,5.027 -36.046,8.808 -2.771,1.959 -4.374,4.91 -4.374,8.017 v 0.06 c -0.456,5.779 -0.891,8.452 -1.762,11.341 -3.068,10.235 -2.079,10.412 -11.066,22.744 -6.848,9.403 -9.58,29.969 -14.825,38.6 l -26.743,31.374 c -3.978,4.81 -5.214,11.49 2.173,17.599 6.85,5.665 13.465,1.443 16.592,-1.19 l 30.365,-28.999 v 96.103 c 0,3.305 1.346,6.295 3.504,8.472 2.177,2.158 5.166,3.504 8.472,3.504 6.473,0 11.738,-5.147 11.956,-11.56 V 0 h 0.02 l -0.02,29.722 c 0,6.614 5.361,11.976 11.976,11.976 6.615,0 11.976,-5.362 11.976,-11.976 L -23.951,0 v 22.249 c 0,6.611 5.364,11.976 11.975,11.976 3.306,0 6.295,-1.346 8.472,-3.504 C -1.346,28.544 0,25.555 0,22.249 v -8.115 z"
+             style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+             id="path112" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
