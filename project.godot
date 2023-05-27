@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "AudioStreamPause",
+"language": "GDScript",
+"path": "res://scenes/audio_stream_pause/audio_stream_pause.gd"
+}, {
 "base": "Node",
 "class": "BackButtonNode",
 "language": "GDScript",
@@ -70,6 +75,7 @@ _global_script_classes=[ {
 "path": "res://scenes/spectrum/spectrum.gd"
 } ]
 _global_script_class_icons={
+"AudioStreamPause": "",
 "BackButtonNode": "",
 "CalculateAccurancy": "",
 "DirectoryWatcher": "",

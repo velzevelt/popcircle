@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://sprites/play_button.svg" type="Texture" id=1]
 [ext_resource path="res://scenes/popup_message/show_popup.gd" type="Script" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://scenes/popup_message/confirm_popup/confirm_popup.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/select_song_menu/select_song_menu.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/main_menu/exit_game.gd" type="Script" id=16]
+[ext_resource path="res://scenes/main_menu/menu_music.mp3" type="AudioStream" id=17]
+[ext_resource path="res://scenes/main_menu/menu_music_player.gd" type="Script" id=18]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.054902, 0.054902, 0.054902, 1 )
@@ -161,6 +163,11 @@ script = ExtResource( 11 )
 
 [node name="SettingsNode" type="Node" parent="SettingsL"]
 script = ExtResource( 12 )
+
+[node name="MenuMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+bus = "Music"
+script = ExtResource( 18 )
 
 [connection signal="pressed" from="MenuL/Menu/TopPanel/HBoxContainer/PlayButton" to="SelectSongL/SelectSongNode" method="_on_activate_button_pressed"]
 [connection signal="pressed" from="MenuL/Menu/TopPanel/HBoxContainer/SettingsButton" to="SettingsL/SettingsNode" method="_on_activate_button_pressed"]

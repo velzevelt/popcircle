@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal scene_about_to_change
+
 onready var effect = $TransitionEffectCircle
 
 func change_scene_to(scene: PackedScene):
@@ -7,6 +9,7 @@ func change_scene_to(scene: PackedScene):
 	yield(effect, "animation_finished")
 	effect.play_backwards()
 	
+	emit_signal("scene_about_to_change")
 	get_tree().change_scene_to(scene)
 	get_tree().paused = false
 
@@ -16,6 +19,7 @@ func change_scene(path: String):
 	yield(effect, "animation_finished")
 	effect.play_backwards()
 	
+	emit_signal("scene_about_to_change")
 	get_tree().change_scene(path)
 	get_tree().paused = false
 
@@ -27,5 +31,4 @@ func reload_current_scene():
 	
 	get_tree().reload_current_scene()
 	get_tree().paused = false
-	
 
