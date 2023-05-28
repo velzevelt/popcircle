@@ -24,6 +24,9 @@ bg_color = Color( 0.054902, 0.054902, 0.054902, 1 )
 corner_radius_top_left = 126
 
 [node name="World" type="Node2D"]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Spawner" parent="." instance=ExtResource( 8 )]
 bubble_scene = ExtResource( 7 )

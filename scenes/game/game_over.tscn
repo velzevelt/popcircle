@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/main_menu/button_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/game/replay_button.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://scenes/main_menu/button_pressed.tres" type="StyleBox" id=7]
 [ext_resource path="res://scenes/game/game_over.tres" type="StyleBox" id=8]
 [ext_resource path="res://fonts/ConsolaMono-Book.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://scenes/select_song_menu/button_font.tres" type="DynamicFont" id=10]
+[ext_resource path="res://scenes/game/final_accurancy.gd" type="Script" id=11]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.137255, 0.137255, 0.137255, 0.215686 )
@@ -35,13 +37,13 @@ margin_right = 548.0
 margin_bottom = 323.5
 custom_styles/panel = ExtResource( 8 )
 
-[node name="Label" type="Label" parent="Panel"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -423.0
-margin_top = 16.0
-margin_right = 423.0
-margin_bottom = 236.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+margin_right = 1096.0
+margin_bottom = 220.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 custom_fonts/font = SubResource( 3 )
@@ -49,19 +51,73 @@ text = "Failed"
 align = 1
 uppercase = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 88.0
-margin_top = -187.0
-margin_right = -85.0
-margin_bottom = -39.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+margin_top = 224.0
+margin_right = 1096.0
+margin_bottom = 435.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/VBoxContainer"]
+margin_right = 1096.0
+margin_bottom = 211.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 40
+custom_constants/margin_top = 40
+custom_constants/margin_left = 40
+custom_constants/margin_bottom = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer/MarginContainer"]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 1056.0
+margin_bottom = 171.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+margin_top = 34.0
+margin_right = 526.0
+margin_bottom = 97.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+size_flags_stretch_ratio = 1.1
+custom_fonts/font = ExtResource( 10 )
+text = "Accurancy:"
+align = 2
+
+[node name="AccurancyLabel" type="Label" parent="Panel/VBoxContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 536.0
+margin_top = 34.0
+margin_right = 1016.0
+margin_bottom = 97.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 10 )
+text = "100%"
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer"]
+margin_top = 439.0
+margin_right = 1096.0
+margin_bottom = 647.0
+custom_constants/margin_right = 40
+custom_constants/margin_top = 40
+custom_constants/margin_left = 40
+custom_constants/margin_bottom = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/MarginContainer"]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 1056.0
+margin_bottom = 168.0
 custom_constants/separation = 32
 
-[node name="Button" type="Button" parent="Panel/HBoxContainer"]
-margin_right = 445.0
-margin_bottom = 148.0
+[node name="Button" type="Button" parent="Panel/VBoxContainer/MarginContainer/HBoxContainer"]
+margin_right = 492.0
+margin_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
@@ -70,13 +126,13 @@ custom_styles/pressed = ExtResource( 7 )
 custom_styles/normal = ExtResource( 3 )
 text = "Back"
 
-[node name="BackButtonNode" type="Node" parent="Panel/HBoxContainer/Button"]
+[node name="BackButtonNode" type="Node" parent="Panel/VBoxContainer/MarginContainer/HBoxContainer/Button"]
 script = ExtResource( 6 )
 
-[node name="Button2" type="Button" parent="Panel/HBoxContainer"]
-margin_left = 477.0
-margin_right = 923.0
-margin_bottom = 148.0
+[node name="Button2" type="Button" parent="Panel/VBoxContainer/MarginContainer/HBoxContainer"]
+margin_left = 524.0
+margin_right = 1016.0
+margin_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
@@ -85,5 +141,8 @@ custom_styles/pressed = ExtResource( 7 )
 custom_styles/normal = ExtResource( 3 )
 text = "Replay"
 
-[node name="ReplayButtonNode" type="Node" parent="Panel/HBoxContainer/Button2"]
+[node name="ReplayButtonNode" type="Node" parent="Panel/VBoxContainer/MarginContainer/HBoxContainer/Button2"]
 script = ExtResource( 2 )
+
+[node name="Accurancy" type="Node" parent="."]
+script = ExtResource( 11 )
