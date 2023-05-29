@@ -177,6 +177,7 @@ script = ExtResource( 18 )
 [connection signal="pressed" from="MenuL/Menu/TopPanel/HBoxContainer/ExitButton" to="MenuL/Menu/TopPanel/HBoxContainer/ExitButton/ShowPopup" method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="MenuL/Menu/AboutButton" to="AboutL/About" method="_on_activate_button_pressed"]
 [connection signal="yes_pressed" from="MenuL/ConfirmPopup" to="MenuL/ConfirmPopup/ExitGame" method="_on_ConfirmPopup_yes_pressed"]
+[connection signal="transition_started" from="AboutL" to="AboutL/AboutControl/Header/Content/VBoxContainer/RichTextLabel" method="_on_AboutL_transition_started"]
 [connection signal="pressed" from="AboutL/AboutControl/CloseMenuButton" to="AboutL/About" method="_on_close_button_pressed"]
 [connection signal="pressed" from="SelectSongL/SelectSongMenu/Close/CloseButton" to="SelectSongL/SelectSongNode" method="_on_close_button_pressed"]
 [connection signal="pressed" from="SettingsL/Settings/CloseMenuButton" to="SettingsL/SettingsNode" method="_on_close_button_pressed"]
