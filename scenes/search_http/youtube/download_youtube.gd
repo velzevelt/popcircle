@@ -10,14 +10,20 @@ var http_request: HTTPRequest
 var _file_token_info: Dictionary
 var _download_path: String
 var _can_get_downloaded_size := false
-
+var _error_occured := false
 
 func _ready():
+	connect("download_error_occurred", self, '_set_error_occured')
 	connect("download_error_occurred", self, '_clean_http_request')
+	
 
+func _set_error_occured():
+	_error_occured = true
 
 func _clean_http_request():
 	http_request.queue_free()
+	yield(http_request, 'tree_exiting')
+	_error_occured = false
 
 
 func cancel_request():
@@ -40,7 +46,9 @@ func download(url: String, path: String):
 	http_request.connect("request_completed", self, "_on_file_token_info_requested")
 	
 	# Pass through annoying cors policy, only required for web export
-	var proxy_url = "https://cors-anywhere.herokuapp.com/" if OS.has_feature("JavaScript") else ''
+	#var proxy_url = "https://cors-anywhere-bkiw.onrender.com/" if OS.has_feature("JavaScript") else ''
+	var proxy_url = ""
+	
 	
 	# First step get file token and some info
 	var headers = ['Content-Type: application/x-www-form-urlencoded; charset=UTF-8']
@@ -49,33 +57,33 @@ func download(url: String, path: String):
 	post_body
 	)
 	
-	if err != OK:
+	yield(http_request, "request_completed")
+	if _error_occured:
 		push_warning("Request error")
-		emit_signal("download_error_occurred")
 		return
 	
-	yield(http_request, "request_completed")
+	
+	# Second step send file conversion command to server
 	http_request.disconnect("request_completed", self, "_on_file_token_info_requested")
 	http_request.connect("request_completed", self, "_on_file_conversion_requested")
 	
-	# Second step send file conversion command to server
 	headers = ['Content-Type: application/x-www-form-urlencoded; charset=UTF-8']
 	post_body = "token=%s" % _file_token_info['token']
 	err = http_request.request(proxy_url + "https://s61.notube.net/recover_weight.php", headers, true, HTTPClient.METHOD_POST,
 	post_body
 	)
 	
-	if err != OK:
+	yield(http_request, "request_completed")
+	if _error_occured:
 		push_warning("Request error")
-		emit_signal("download_error_occurred")
 		return
 	
-	yield(http_request, "request_completed")
+	
+	# Third step download file
 	http_request.disconnect("request_completed", self, "_on_file_conversion_requested")
 	http_request.connect("request_completed", self, "_on_download_request_completed")
 	
-	# Third step download file
-	headers = ['Origin: https://notube.net']
+	headers = []
 	_download_path = path
 	var get_url = "https://s61.notube.net/download.php?token=%s" % _file_token_info['token']
 	err = http_request.request(proxy_url + get_url, headers, true, HTTPClient.METHOD_GET)
@@ -83,9 +91,10 @@ func download(url: String, path: String):
 	# Try to get downloaded size
 	_can_get_downloaded_size = true
 	
-	if err != OK:
+	
+	yield(http_request, "request_completed")
+	if _error_occured:
 		push_warning("Request error")
-		emit_signal("download_error_occurred")
 		_can_get_downloaded_size = false
 		return
 	
@@ -101,22 +110,26 @@ func _physics_process(delta):
 
 # Get token and some info
 func _on_file_token_info_requested(result: int, response_code: int, headers: PoolStringArray, body: PoolByteArray):
-	if result != HTTPRequest.RESULT_SUCCESS:
+	if result != HTTPRequest.RESULT_SUCCESS or response_code != 200:
 		push_warning("Request error DOWNLOAD FILE TOKEN result: %s" % result)
 		emit_signal("download_error_occurred")
 		return
 	
 	var response_data = body.get_string_from_utf8()
+	#breakpoint
 	response_data = JSON.parse(response_data)
-	
 	if response_data.error == OK:
 		_file_token_info = response_data.result
 		#breakpoint
+	else:
+		push_warning("Request error PARSE FILE TOKEN result: %s" % result)
+		emit_signal("download_error_occurred")
+		return
 
 
 # Send file convesion command to server
 func _on_file_conversion_requested(result: int, response_code: int, headers: PoolStringArray, body: PoolByteArray):
-	if result != HTTPRequest.RESULT_SUCCESS:
+	if result != HTTPRequest.RESULT_SUCCESS or response_code != 200:
 		push_warning("Request error CONVERSION")
 		emit_signal("download_error_occurred")
 		return
@@ -125,7 +138,7 @@ func _on_file_conversion_requested(result: int, response_code: int, headers: Poo
 
 # Download file
 func _on_download_request_completed(result: int, response_code: int, headers: PoolStringArray, body: PoolByteArray):
-	if result != HTTPRequest.RESULT_SUCCESS:
+	if result != HTTPRequest.RESULT_SUCCESS or response_code != 200:
 		push_warning("Download request error")
 		emit_signal("download_error_occurred")
 		return
