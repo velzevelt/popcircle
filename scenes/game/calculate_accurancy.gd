@@ -61,4 +61,4 @@ func _on_Spawner_task_failed():
 
 
 func _on_World_finished():
-	emit_signal("final_accurancy_known", missed_count, completed_count)
+	emit_signal("final_accurancy_known", calculate_true_accurancy(missed_count, completed_count))
