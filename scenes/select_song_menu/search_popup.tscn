@@ -4,6 +4,7 @@
 [ext_resource path="res://scenes/popup_message/popup_panel.tres" type="StyleBox" id=2]
 
 [node name="SearchPopup" type="WindowDialog"]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

@@ -46,14 +46,14 @@ func download(url: String, path: String):
 	http_request.connect("request_completed", self, "_on_file_token_info_requested")
 	
 	# Pass through annoying cors policy, only required for web export
-	#var proxy_url = "https://cors-anywhere-bkiw.onrender.com/" if OS.has_feature("JavaScript") else ''
-	var proxy_url = ""
+	var proxy_url = "https://cors-anywhere.herokuapp.com/" if OS.has_feature("JavaScript") else ''
+	#var proxy_url = "https://cors-anywhere-bkiw.onrender.com/"
 	
 	
 	# First step get file token and some info
 	var headers = ['Content-Type: application/x-www-form-urlencoded; charset=UTF-8']
 	var post_body = "url=%s&format=mp3&lang=ru" % url
-	var err = http_request.request(proxy_url + "https://s61.notube.net/recover_weight.php", headers, true, HTTPClient.METHOD_POST,
+	var err = http_request.request(proxy_url + "https://s57.notube.net/recover_weight.php", headers, true, HTTPClient.METHOD_POST,
 	post_body
 	)
 	
@@ -69,7 +69,7 @@ func download(url: String, path: String):
 	
 	headers = ['Content-Type: application/x-www-form-urlencoded; charset=UTF-8']
 	post_body = "token=%s" % _file_token_info['token']
-	err = http_request.request(proxy_url + "https://s61.notube.net/recover_weight.php", headers, true, HTTPClient.METHOD_POST,
+	err = http_request.request(proxy_url + "https://s57.notube.net/recover_weight.php", headers, true, HTTPClient.METHOD_POST,
 	post_body
 	)
 	
@@ -85,7 +85,7 @@ func download(url: String, path: String):
 	
 	headers = []
 	_download_path = path
-	var get_url = "https://s61.notube.net/download.php?token=%s" % _file_token_info['token']
+	var get_url = "https://s57.notube.net/download.php?token=%s" % _file_token_info['token']
 	err = http_request.request(proxy_url + get_url, headers, true, HTTPClient.METHOD_GET)
 	
 	# Try to get downloaded size
@@ -103,6 +103,7 @@ func download(url: String, path: String):
 	_can_get_downloaded_size = false
 	_clean_http_request()
 
+
 func _physics_process(delta):
 	if _can_get_downloaded_size and is_instance_valid(http_request):
 		emit_signal("chunk_downloaded", http_request.get_downloaded_bytes(), http_request.get_body_size())
@@ -111,12 +112,12 @@ func _physics_process(delta):
 # Get token and some info
 func _on_file_token_info_requested(result: int, response_code: int, headers: PoolStringArray, body: PoolByteArray):
 	if result != HTTPRequest.RESULT_SUCCESS or response_code != 200:
-		push_warning("Request error DOWNLOAD FILE TOKEN result: %s" % result)
+		push_warning("Request error DOWNLOAD FILE TOKEN result: %s response_code: %s" % [result, response_code])
 		emit_signal("download_error_occurred")
 		return
 	
 	var response_data = body.get_string_from_utf8()
-	#breakpoint
+	breakpoint
 	response_data = JSON.parse(response_data)
 	if response_data.error == OK:
 		_file_token_info = response_data.result
