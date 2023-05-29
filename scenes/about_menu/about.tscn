@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://sprites/close_button.svg" type="Texture" id=1]
 [ext_resource path="res://scenes/button_color_tint/press_color_tint.gd" type="Script" id=2]
 [ext_resource path="res://scenes/main_menu/default_font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://scenes/settings_menu/settings_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://scenes/about_menu/translate_rich_text.gd" type="Script" id=5]
 
 [sub_resource type="StyleBoxLine" id=2]
 color = Color( 1, 1, 1, 1 )
@@ -79,6 +80,7 @@ margin_bottom = 70.0
 size_flags_horizontal = 3
 custom_fonts/normal_font = ExtResource( 4 )
 bbcode_enabled = true
-bbcode_text = "Contact: [url]contact@gmail.com[/url]"
-text = "Contact: contact@gmail.com"
+bbcode_text = "ABOUT_MAIN"
+text = "ABOUT_MAIN"
 fit_content_height = true
+script = ExtResource( 5 )
