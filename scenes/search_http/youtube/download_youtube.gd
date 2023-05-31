@@ -46,12 +46,14 @@ func download(url: String, path: String):
 	http_request.connect("request_completed", self, "_on_file_token_info_requested")
 	
 	# Pass through annoying cors policy, only required for web export
-	var proxy_url = "https://cors-anywhere.herokuapp.com/" if OS.has_feature("JavaScript") else ''
-	#var proxy_url = "https://cors-anywhere-bkiw.onrender.com/"
-	
+	var proxy_url = "" #if OS.has_feature("JavaScript") else ''
+	var proxy_headers = [
+		"x-requested-with: XMLHttpRequest",
+	]
 	
 	# First step get file token and some info
 	var headers = ['Content-Type: application/x-www-form-urlencoded; charset=UTF-8']
+	headers.append_array(proxy_headers)
 	var post_body = "url=%s&format=mp3&lang=ru" % url
 	var err = http_request.request(proxy_url + "https://s57.notube.net/recover_weight.php", headers, true, HTTPClient.METHOD_POST,
 	post_body
@@ -68,6 +70,7 @@ func download(url: String, path: String):
 	http_request.connect("request_completed", self, "_on_file_conversion_requested")
 	
 	headers = ['Content-Type: application/x-www-form-urlencoded; charset=UTF-8']
+	headers.append_array(proxy_headers)
 	post_body = "token=%s" % _file_token_info['token']
 	err = http_request.request(proxy_url + "https://s57.notube.net/recover_weight.php", headers, true, HTTPClient.METHOD_POST,
 	post_body
@@ -84,6 +87,7 @@ func download(url: String, path: String):
 	http_request.connect("request_completed", self, "_on_download_request_completed")
 	
 	headers = []
+	headers.append_array(proxy_headers)
 	_download_path = path
 	var get_url = "https://s57.notube.net/download.php?token=%s" % _file_token_info['token']
 	err = http_request.request(proxy_url + get_url, headers, true, HTTPClient.METHOD_GET)

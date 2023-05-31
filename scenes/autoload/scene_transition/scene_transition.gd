@@ -32,3 +32,10 @@ func reload_current_scene():
 	get_tree().reload_current_scene()
 	get_tree().paused = false
 
+
+func quit():
+	if OS.has_feature("JavaScript"):
+		JavaScript.eval("window.location.reload();", true)
+		return
+	
+	get_tree().quit()
