@@ -7,11 +7,13 @@ var text: String setget set_text, get_text
 func get_text():
 	return text
 
+
 func set_text(value):
-	text = value
+	text = tr(value)
 	message.text = text
 
 
 func _on_OKButton_pressed():
-	visible = false
+	hide()
+
 

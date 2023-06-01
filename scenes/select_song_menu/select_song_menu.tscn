@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://scenes/main_menu/default_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/select_song_menu/song_button.tscn" type="PackedScene" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://scenes/select_song_menu/update_songs.gd" type="Script" id=16]
 [ext_resource path="res://scenes/select_song_menu/global_search.gd" type="Script" id=17]
 [ext_resource path="res://scenes/popup_message/popup_window.gd" type="Script" id=18]
+[ext_resource path="res://scenes/main_menu/disable_web_line_edit.gd" type="Script" id=19]
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0, 0, 0, 0.713726 )
@@ -424,12 +425,15 @@ script = ExtResource( 11 )
 popup = NodePath("../../SearchPopup")
 
 [node name="SearchPopup" parent="." instance=ExtResource( 14 )]
-visible = true
 script = ExtResource( 18 )
 
 [node name="LocalSearch" type="Node" parent="SearchPopup/MarginContainer/VBoxContainer/LocalSearch" index="2"]
 script = ExtResource( 13 )
 root = NodePath("../../../..")
+
+[node name="DisableWebLineEdit" type="Node" parent="SearchPopup/MarginContainer/VBoxContainer/GlobalSearch/LineEdit" index="2"]
+script = ExtResource( 19 )
+line_edit = NodePath("..")
 
 [node name="GlobalSearch" type="Node" parent="SearchPopup/MarginContainer/VBoxContainer/GlobalSearch" index="2"]
 script = ExtResource( 17 )

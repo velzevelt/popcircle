@@ -105,6 +105,7 @@ SongLoader="*res://scenes/autoload/song_loader.gd"
 Cursor="*res://scenes/autoload/cursor/cursor.tscn"
 SceneTransition="*res://scenes/autoload/scene_transition/scene_transition.tscn"
 YandexGamesSdk="*res://web_export_include/yandex_games/yandex_games_sdk.gd"
+GlobalMuteOnUnfocus="*res://scenes/autoload/global_mute_on_unfocus.gd"
 
 [debug]
 
@@ -127,6 +128,7 @@ enabled=PoolStringArray(  )
 [global]
 
 game_version="1.0.0"
+build_for_yandex_games=true
 
 [gui]
 
