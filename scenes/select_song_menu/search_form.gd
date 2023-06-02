@@ -6,3 +6,8 @@ onready var line_edit = $LineEdit
 
 func _on_LineEdit_text_entered(new_text):
 	emit_signal("text_entered", line_edit.text)
+
+
+func _on_Submit_pressed():
+	if line_edit.text != "":
+		_on_LineEdit_text_entered(line_edit.text)
