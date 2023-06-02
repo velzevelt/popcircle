@@ -48,3 +48,4 @@ func _on_LocalSearch_text_changed(new_text):
 		for c in get_children():
 			c.visible = true
 		return
+

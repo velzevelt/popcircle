@@ -433,6 +433,7 @@ visible = false
 [connection signal="double_clicked" from="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" to="PlayButton/PlayButton" method="_on_Songs_double_clicked"]
 [connection signal="song_selected" from="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" to="PlayButton/PlayButton" method="_on_Songs_song_selected"]
 [connection signal="pressed" from="PlayButton" to="PlayButton/PlayButton" method="_on_PlayButton_pressed"]
+[connection signal="text_changed" from="SearchPopup/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/LocalSearch" to="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" method="_on_LocalSearch_text_changed"]
 [connection signal="text_entered" from="SearchPopup/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/LocalSearch" to="PanelContainer/VBoxContainer/Content/ScrollContainer/MarginContainer/Songs" method="_on_LocalSearch_text_entered"]
 [connection signal="text_entered" from="SearchPopup/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GlobalSearch" to="SearchPopup/SearchYoutube" method="search"]
 [connection signal="search_failed" from="SearchPopup/SearchYoutube" to="GlobalSearchResult/SearchBridge" method="_on_SearchYoutube_search_failed"]
