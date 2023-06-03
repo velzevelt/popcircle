@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Warframe We All Lift Together.mp3-8fa7e031efd3596463d646c5b1cc76c0.mp3str"
+
+[deps]
+
+source_file="res://songs/Warframe We All Lift Together.mp3"
+dest_files=[ "res://.import/Warframe We All Lift Together.mp3-8fa7e031efd3596463d646c5b1cc76c0.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

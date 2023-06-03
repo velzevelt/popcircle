@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/inabakumori - Lagtrain (Vo. Kaai Yuki) .mp3-1eac2a84f1519c44c0dcc86360d13240.mp3str"
+
+[deps]
+
+source_file="res://songs/inabakumori - Lagtrain (Vo. Kaai Yuki) .mp3"
+dest_files=[ "res://.import/inabakumori - Lagtrain (Vo. Kaai Yuki) .mp3-1eac2a84f1519c44c0dcc86360d13240.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

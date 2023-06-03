@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Nightcore - City Of The Dead.mp3-c282eb3c0b1e73ddfaf212a9b65500a7.mp3str"
+
+[deps]
+
+source_file="res://songs/Nightcore - City Of The Dead.mp3"
+dest_files=[ "res://.import/Nightcore - City Of The Dead.mp3-c282eb3c0b1e73ddfaf212a9b65500a7.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

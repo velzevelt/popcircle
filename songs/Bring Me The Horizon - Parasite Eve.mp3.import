@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Bring Me The Horizon - Parasite Eve.mp3-dac1ab0e161d6527601b754d219ee0d1.mp3str"
+
+[deps]
+
+source_file="res://songs/Bring Me The Horizon - Parasite Eve.mp3"
+dest_files=[ "res://.import/Bring Me The Horizon - Parasite Eve.mp3-dac1ab0e161d6527601b754d219ee0d1.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

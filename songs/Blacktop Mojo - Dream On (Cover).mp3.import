@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Blacktop Mojo - Dream On (Cover).mp3-20da3d81dfd9e5db9c04cb24ff8703bd.mp3str"
+
+[deps]
+
+source_file="res://songs/Blacktop Mojo - Dream On (Cover).mp3"
+dest_files=[ "res://.import/Blacktop Mojo - Dream On (Cover).mp3-20da3d81dfd9e5db9c04cb24ff8703bd.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

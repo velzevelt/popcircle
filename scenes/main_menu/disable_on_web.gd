@@ -7,9 +7,8 @@ var popup_scene = preload("res://scenes/popup_message/popup_message.tscn")
 var _popup
 
 func _ready():
-	# 1) LineEdit does not work for mobile (text does not entered) (It can be fixed with additional submit button)
 	# 2) Remote download does not work on web due to cors (To fix this need use working cors proxy)
-	if not (OS.has_touchscreen_ui_hint() and OS.has_feature('JavaScript')): 
+	if not OS.has_feature('JavaScript'): 
 		queue_free() 
 		return
 	

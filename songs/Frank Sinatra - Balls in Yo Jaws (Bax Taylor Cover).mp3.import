@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Frank Sinatra - Balls in Yo Jaws (Bax Taylor Cover).mp3-73749b73d7e4abd855af29d3ee81785b.mp3str"
+
+[deps]
+
+source_file="res://songs/Frank Sinatra - Balls in Yo Jaws (Bax Taylor Cover).mp3"
+dest_files=[ "res://.import/Frank Sinatra - Balls in Yo Jaws (Bax Taylor Cover).mp3-73749b73d7e4abd855af29d3ee81785b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
