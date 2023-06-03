@@ -127,7 +127,7 @@ enabled=PoolStringArray(  )
 
 [global]
 
-game_version="1.0.0"
+game_version="1.0.1"
 build_for_yandex_games=true
 
 [gui]
