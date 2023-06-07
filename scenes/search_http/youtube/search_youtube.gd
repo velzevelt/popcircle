@@ -40,12 +40,15 @@ func update_songs() -> Array:
 
 func get_api_key() -> String:
 	var file = File.new()
-	assert(file.file_exists(API_KEY_PATH), "Cant find %s" % API_KEY_PATH)
-	
-	file.open(API_KEY_PATH, File.READ)
-	var key = file.get_as_text()
-	file.close()
-	return key
+	if file.file_exists(API_KEY_PATH):
+		file.open(API_KEY_PATH, File.READ)
+		var key = file.get_as_text()
+		file.close()
+		return key
+	else:
+		var message = "Missing youtube api key at path %s Global search will not work"
+		push_error(message % API_KEY_PATH)
+		return ''
 
 
 func search(song_name: String) -> void:

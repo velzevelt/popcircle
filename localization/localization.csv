@@ -39,5 +39,6 @@ ABOUT_DONATE,Support: [url]https://boosty.to/velzevelt/donate[/url],Поддер
 ABOUT_CONTACT,Contact: [url]velzcontact@yandex.ru[/url],Контакт: [url]velzcontact@yandex.ru[/url]
 ABOUT_ITCH,Itch.io: [url]https://velzevelt.itch.io/popcircle[/url],
 ABOUT_YANDEX,Yandex.games: [url]https://yandex.com/games/app/232633[/url],
+ABOUT_GAME,Description: PopCircle is a game in which you need to destroy circles while listening to your favorite songs. The speed at which circles appear varies depending on the song being played.,Описание: PopCircle - это игра"," в которой необходимо уничтожать кружки"," слушая любимые песни. Скорость возникновения кружков меняется в зависимости от проигрываемой песни.
 ,,
 PLATFORM_UNSUPPORTED,This feature is unsupported for current platform {platform_name}!,Эта функция недоступна для текущей платформы {platform_name}!
